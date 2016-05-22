@@ -1,5 +1,5 @@
-TOOLPATH = ../z_tools/
-INCPATH  = ../z_tools/haribote/
+TOOLPATH = ../tools/windows/
+INCPATH  = ../tools/windows/haribote/
 
 MAKE     = $(TOOLPATH)make.exe -r
 EDIMG    = $(TOOLPATH)edimg.exe
@@ -24,7 +24,7 @@ haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 		type/type.hrb iroha/iroha.hrb chklang/chklang.hrb \
 		notrec/notrec.hrb bball/bball.hrb invader/invader.hrb \
 		calc/calc.hrb tview/tview.hrb mmlplay/mmlplay.hrb gview/gview.hrb
-	$(EDIMG)   imgin:../z_tools/fdimg0at.tek \
+	$(EDIMG)   imgin:../tools/windows/fdimg0at.tek \
 		wbinimg src:haribote/ipl10.bin len:512 from:0 to:0 \
 		copy from:haribote/haribote.sys to:@: \
 		copy from:haribote/jp.nas to:@: \
@@ -72,8 +72,8 @@ haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
 
 run :
 	$(MAKE) haribote.img
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(COPY) haribote.img ..\tools\windows\qemu\fdimage0.bin
+	$(MAKE) -C ../tools/windows/qemu
 
 install :
 	$(MAKE) haribote.img
@@ -116,8 +116,8 @@ full :
 
 run_full :
 	$(MAKE) full
-	$(COPY) haribote.img ..\z_tools\qemu\fdimage0.bin
-	$(MAKE) -C ../z_tools/qemu
+	$(COPY) haribote.img ..\tools\windows\qemu\fdimage0.bin
+	$(MAKE) -C ../tools/windows/qemu
 
 install_full :
 	$(MAKE) full

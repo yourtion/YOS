@@ -1,7 +1,7 @@
 OBJS_API =	stdlib.obj
 
-TOOLPATH = ../../z_tools/
-INCPATH  = ../../z_tools/haribote/
+TOOLPATH = ../../tools/windows/
+INCPATH  = ../../tools/windows/haribote/
 
 MAKE     = $(TOOLPATH)make.exe -r
 NASK     = $(TOOLPATH)nask.exe

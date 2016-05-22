@@ -4,8 +4,8 @@ OBJS_API =	api001.obj api002.obj api003.obj api004.obj api005.obj api006.obj \
 			api019.obj api020.obj api021.obj api022.obj api023.obj api024.obj \
 			api025.obj api026.obj api027.obj alloca.obj
 
-TOOLPATH = ../../z_tools/
-INCPATH  = ../../z_tools/haribote/
+TOOLPATH = ../../tools/windows/
+INCPATH  = ../../tools/windows/haribote/
 
 MAKE     = $(TOOLPATH)make.exe -r
 NASK     = $(TOOLPATH)nask.exe

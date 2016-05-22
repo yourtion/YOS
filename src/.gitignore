@@ -1,0 +1,13 @@
+*.lst
+*.obj
+*.map
+*.bim
+*.hrb
+*.lib
+*.org
+*.sys
+*.img
+
+asmhead.bin
+hankaku.bin
+ipl10.bin
