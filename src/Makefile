@@ -1,5 +1,5 @@
 TOOLPATH = ../tools/windows/
-INCPATH  = ../tools/windows/haribote/
+INCPATH  = ../tools/windows/kernel/
 
 MAKE     = $(TOOLPATH)make.exe -r
 EDIMG    = $(TOOLPATH)edimg.exe
@@ -14,58 +14,58 @@ default :
 
 #文件生成规则
 
-haribote.img : haribote/ipl10.bin haribote/haribote.sys Makefile \
-		a/a.hrb hello3/hello3.hrb hello4/hello4.hrb hello5/hello5.hrb \
-		winhelo/winhelo.hrb winhelo2/winhelo2.hrb winhelo3/winhelo3.hrb \
-		star1/star1.hrb stars/stars.hrb stars2/stars2.hrb \
-		lines/lines.hrb walk/walk.hrb noodle/noodle.hrb \
-		beepdown/beepdown.hrb color/color.hrb color2/color2.hrb \
-		sosu/sosu.hrb sosu2/sosu2.hrb sosu3/sosu3.hrb \
-		type/type.hrb iroha/iroha.hrb chklang/chklang.hrb \
-		notrec/notrec.hrb bball/bball.hrb invader/invader.hrb \
-		calc/calc.hrb tview/tview.hrb mmlplay/mmlplay.hrb gview/gview.hrb
+haribote.img : kernel/ipl10.bin kernel/haribote.sys Makefile \
+		demos/a/a.hrb demos/hello3/hello3.hrb demos/hello4/hello4.hrb demos/hello5/hello5.hrb \
+		demos/winhelo/winhelo.hrb demos/winhelo2/winhelo2.hrb demos/winhelo3/winhelo3.hrb \
+		demos/star1/star1.hrb demos/stars/stars.hrb demos/stars2/stars2.hrb \
+		demos/lines/lines.hrb apps/walk/walk.hrb demos/noodle/noodle.hrb \
+		demos/beepdown/beepdown.hrb demos/color/color.hrb demos/color2/color2.hrb \
+		demos/sosu/sosu.hrb demos/sosu2/sosu2.hrb demos/sosu3/sosu3.hrb \
+		apps/type/type.hrb apps/iroha/iroha.hrb demos/chklang/chklang.hrb \
+		demos/notrec/notrec.hrb demos/bball/bball.hrb apps/invader/invader.hrb \
+		apps/calc/calc.hrb apps/tview/tview.hrb apps/mmlplay/mmlplay.hrb apps/gview/gview.hrb
 	$(EDIMG)   imgin:../tools/windows/fdimg0at.tek \
-		wbinimg src:haribote/ipl10.bin len:512 from:0 to:0 \
-		copy from:haribote/haribote.sys to:@: \
-		copy from:haribote/jp.nas to:@: \
+		wbinimg src:kernel/ipl10.bin len:512 from:0 to:0 \
+		copy from:kernel/haribote.sys to:@: \
+		copy from:kernel/jp.nas to:@: \
 		copy from:make.bat to:@: \
-		copy from:a/a.hrb to:@: \
-		copy from:hello3/hello3.hrb to:@: \
-		copy from:hello4/hello4.hrb to:@: \
-		copy from:hello5/hello5.hrb to:@: \
-		copy from:winhelo/winhelo.hrb to:@: \
-		copy from:winhelo2/winhelo2.hrb to:@: \
-		copy from:winhelo3/winhelo3.hrb to:@: \
-		copy from:star1/star1.hrb to:@: \
-		copy from:stars/stars.hrb to:@: \
-		copy from:stars2/stars2.hrb to:@: \
-		copy from:lines/lines.hrb to:@: \
-		copy from:walk/walk.hrb to:@: \
-		copy from:noodle/noodle.hrb to:@: \
-		copy from:beepdown/beepdown.hrb to:@: \
-		copy from:color/color.hrb to:@: \
-		copy from:color2/color2.hrb to:@: \
-		copy from:sosu/sosu.hrb to:@: \
-		copy from:sosu2/sosu2.hrb to:@: \
-		copy from:sosu3/sosu3.hrb to:@: \
-		copy from:type/type.hrb to:@: \
-		copy from:iroha/iroha.hrb to:@: \
-		copy from:chklang/chklang.hrb to:@: \
+		copy from:demos/a/a.hrb to:@: \
+		copy from:demos/hello3/hello3.hrb to:@: \
+		copy from:demos/hello4/hello4.hrb to:@: \
+		copy from:demos/hello5/hello5.hrb to:@: \
+		copy from:demos/winhelo/winhelo.hrb to:@: \
+		copy from:demos/winhelo2/winhelo2.hrb to:@: \
+		copy from:demos/winhelo3/winhelo3.hrb to:@: \
+		copy from:demos/star1/star1.hrb to:@: \
+		copy from:demos/stars/stars.hrb to:@: \
+		copy from:demos/stars2/stars2.hrb to:@: \
+		copy from:demos/lines/lines.hrb to:@: \
+		copy from:apps/walk/walk.hrb to:@: \
+		copy from:demos/noodle/noodle.hrb to:@: \
+		copy from:demos/beepdown/beepdown.hrb to:@: \
+		copy from:demos/color/color.hrb to:@: \
+		copy from:demos/color2/color2.hrb to:@: \
+		copy from:demos/sosu/sosu.hrb to:@: \
+		copy from:demos/sosu2/sosu2.hrb to:@: \
+		copy from:demos/sosu3/sosu3.hrb to:@: \
+		copy from:apps/type/type.hrb to:@: \
+		copy from:apps/iroha/iroha.hrb to:@: \
+		copy from:demos/chklang/chklang.hrb to:@: \
 		copy from:euc.txt to:@: \
-		copy from:notrec/notrec.hrb to:@: \
-		copy from:bball/bball.hrb to:@: \
-		copy from:invader/invader.hrb to:@: \
-		copy from:calc/calc.hrb to:@: \
-		copy from:tview/tview.hrb to:@: \
-		copy from:mmlplay/mmlplay.hrb to:@: \
-		copy from:mmldata/kirakira.mml to:@: \
-		copy from:mmldata/fujisan.mml to:@: \
-		copy from:mmldata/daigo.mml to:@: \
-		copy from:mmldata/daiku.mml to:@: \
-		copy from:gview/gview.hrb to:@: \
-		copy from:pictdata/fujisan.jpg to:@: \
-		copy from:pictdata/night.bmp to:@: \
-		copy from:nihongo/nihongo.fnt to:@: \
+		copy from:demos/notrec/notrec.hrb to:@: \
+		copy from:demos/bball/bball.hrb to:@: \
+		copy from:apps/invader/invader.hrb to:@: \
+		copy from:apps/calc/calc.hrb to:@: \
+		copy from:apps/tview/tview.hrb to:@: \
+		copy from:apps/mmlplay/mmlplay.hrb to:@: \
+		copy from:media/kirakira.mml to:@: \
+		copy from:media/fujisan.mml to:@: \
+		copy from:media/daigo.mml to:@: \
+		copy from:media/daiku.mml to:@: \
+		copy from:apps/gview/gview.hrb to:@: \
+		copy from:media/fujisan.jpg to:@: \
+		copy from:media/night.bmp to:@: \
+		copy from:font/nihongo.fnt to:@: \
 		imgout:haribote.img
 
 #命令
@@ -80,38 +80,38 @@ install :
 	$(IMGTOL) w a: haribote.img
 
 full :
-	$(MAKE) -C haribote
-	$(MAKE) -C apilib
-	$(MAKE) -C stdlib
-	$(MAKE) -C a
-	$(MAKE) -C hello3
-	$(MAKE) -C hello4
-	$(MAKE) -C hello5
-	$(MAKE) -C winhelo
-	$(MAKE) -C winhelo2
-	$(MAKE) -C winhelo3
-	$(MAKE) -C star1
-	$(MAKE) -C stars
-	$(MAKE) -C stars2
-	$(MAKE) -C lines
-	$(MAKE) -C walk
-	$(MAKE) -C noodle
-	$(MAKE) -C beepdown
-	$(MAKE) -C color
-	$(MAKE) -C color2
-	$(MAKE) -C sosu
-	$(MAKE) -C sosu2
-	$(MAKE) -C sosu3
-	$(MAKE) -C type
-	$(MAKE) -C iroha
-	$(MAKE) -C chklang
-	$(MAKE) -C notrec
-	$(MAKE) -C bball
-	$(MAKE) -C invader
-	$(MAKE) -C calc
-	$(MAKE) -C tview
-	$(MAKE) -C mmlplay
-	$(MAKE) -C gview
+	$(MAKE) -C kernel
+	$(MAKE) -C libs/apilib
+	$(MAKE) -C libs/stdlib
+	$(MAKE) -C demos/a
+	$(MAKE) -C demos/hello3
+	$(MAKE) -C demos/hello4
+	$(MAKE) -C demos/hello5
+	$(MAKE) -C demos/winhelo
+	$(MAKE) -C demos/winhelo2
+	$(MAKE) -C demos/winhelo3
+	$(MAKE) -C demos/star1
+	$(MAKE) -C demos/stars
+	$(MAKE) -C demos/stars2
+	$(MAKE) -C demos/lines
+	$(MAKE) -C apps/walk
+	$(MAKE) -C demos/noodle
+	$(MAKE) -C demos/beepdown
+	$(MAKE) -C demos/color
+	$(MAKE) -C demos/color2
+	$(MAKE) -C demos/sosu
+	$(MAKE) -C demos/sosu2
+	$(MAKE) -C demos/sosu3
+	$(MAKE) -C apps/type
+	$(MAKE) -C apps/iroha
+	$(MAKE) -C demos/chklang
+	$(MAKE) -C demos/notrec
+	$(MAKE) -C demos/bball
+	$(MAKE) -C apps/invader
+	$(MAKE) -C apps/calc
+	$(MAKE) -C apps/tview
+	$(MAKE) -C apps/mmlplay
+	$(MAKE) -C apps/gview
 	$(MAKE) haribote.img
 
 run_full :
@@ -135,72 +135,72 @@ src_only :
 	-$(DEL) haribote.img
 
 clean_full :
-	$(MAKE) -C haribote		clean
-	$(MAKE) -C apilib		clean
-	$(MAKE) -C stdlib		clean
-	$(MAKE) -C a			clean
-	$(MAKE) -C hello3		clean
-	$(MAKE) -C hello4		clean
-	$(MAKE) -C hello5		clean
-	$(MAKE) -C winhelo		clean
-	$(MAKE) -C winhelo2		clean
-	$(MAKE) -C winhelo3		clean
-	$(MAKE) -C star1		clean
-	$(MAKE) -C stars		clean
-	$(MAKE) -C stars2		clean
-	$(MAKE) -C lines		clean
-	$(MAKE) -C walk			clean
-	$(MAKE) -C noodle		clean
-	$(MAKE) -C beepdown		clean
-	$(MAKE) -C color		clean
-	$(MAKE) -C color2		clean
-	$(MAKE) -C sosu			clean
-	$(MAKE) -C sosu2		clean
-	$(MAKE) -C sosu3		clean
-	$(MAKE) -C type			clean
-	$(MAKE) -C iroha		clean
-	$(MAKE) -C chklang		clean
-	$(MAKE) -C notrec		clean
-	$(MAKE) -C bball		clean
-	$(MAKE) -C invader		clean
-	$(MAKE) -C calc			clean
-	$(MAKE) -C tview		clean
-	$(MAKE) -C mmlplay		clean
-	$(MAKE) -C gview		clean
+	$(MAKE) -C kernel		clean
+	$(MAKE) -C libs/apilib		clean
+	$(MAKE) -C libs/stdlib		clean
+	$(MAKE) -C demos/a			clean
+	$(MAKE) -C demos/hello3		clean
+	$(MAKE) -C demos/hello4		clean
+	$(MAKE) -C demos/hello5		clean
+	$(MAKE) -C demos/winhelo		clean
+	$(MAKE) -C demos/winhelo2		clean
+	$(MAKE) -C demos/winhelo3		clean
+	$(MAKE) -C demos/star1		clean
+	$(MAKE) -C demos/stars		clean
+	$(MAKE) -C demos/stars2		clean
+	$(MAKE) -C demos/lines		clean
+	$(MAKE) -C demos/walk			clean
+	$(MAKE) -C demos/noodle		clean
+	$(MAKE) -C demos/beepdown		clean
+	$(MAKE) -C demos/color		clean
+	$(MAKE) -C demos/color2		clean
+	$(MAKE) -C demos/sosu			clean
+	$(MAKE) -C demos/sosu2		clean
+	$(MAKE) -C demos/sosu3		clean
+	$(MAKE) -C apps/type			clean
+	$(MAKE) -C apps/iroha		clean
+	$(MAKE) -C demos/chklang		clean
+	$(MAKE) -C demos/notrec		clean
+	$(MAKE) -C demos/bball		clean
+	$(MAKE) -C apps/invader		clean
+	$(MAKE) -C apps/calc			clean
+	$(MAKE) -C apps/tview		clean
+	$(MAKE) -C apps/mmlplay		clean
+	$(MAKE) -C apps/gview		clean
 
 src_only_full :
-	$(MAKE) -C haribote		src_only
-	$(MAKE) -C apilib		src_only
-	$(MAKE) -C stdlib		src_only
-	$(MAKE) -C a			src_only
-	$(MAKE) -C hello3		src_only
-	$(MAKE) -C hello4		src_only
-	$(MAKE) -C hello5		src_only
-	$(MAKE) -C winhelo		src_only
-	$(MAKE) -C winhelo2		src_only
-	$(MAKE) -C winhelo3		src_only
-	$(MAKE) -C star1		src_only
-	$(MAKE) -C stars		src_only
-	$(MAKE) -C stars2		src_only
-	$(MAKE) -C lines		src_only
-	$(MAKE) -C walk			src_only
-	$(MAKE) -C noodle		src_only
-	$(MAKE) -C beepdown		src_only
-	$(MAKE) -C color		src_only
-	$(MAKE) -C color2		src_only
-	$(MAKE) -C sosu			src_only
-	$(MAKE) -C sosu2		src_only
-	$(MAKE) -C sosu3		src_only
-	$(MAKE) -C type			src_only
-	$(MAKE) -C iroha		src_only
-	$(MAKE) -C chklang		src_only
-	$(MAKE) -C notrec		src_only
-	$(MAKE) -C bball		src_only
-	$(MAKE) -C invader		src_only
-	$(MAKE) -C calc			src_only
-	$(MAKE) -C tview		src_only
-	$(MAKE) -C mmlplay		src_only
-	$(MAKE) -C gview		src_only
+	$(MAKE) -C kernel		src_only
+	$(MAKE) -C libs/apilib		src_only
+	$(MAKE) -C libs/stdlib		src_only
+	$(MAKE) -C demos/a			src_only
+	$(MAKE) -C demos/hello3		src_only
+	$(MAKE) -C demos/hello4		src_only
+	$(MAKE) -C demos/hello5		src_only
+	$(MAKE) -C demos/winhelo		src_only
+	$(MAKE) -C demos/winhelo2		src_only
+	$(MAKE) -C demos/winhelo3		src_only
+	$(MAKE) -C demos/star1		src_only
+	$(MAKE) -C demos/stars		src_only
+	$(MAKE) -C demos/stars2		src_only
+	$(MAKE) -C demos/lines		src_only
+	$(MAKE) -C demos/walk			src_only
+	$(MAKE) -C demos/noodle		src_only
+	$(MAKE) -C demos/beepdown		src_only
+	$(MAKE) -C demos/color		src_only
+	$(MAKE) -C demos/color2		src_only
+	$(MAKE) -C demos/sosu			src_only
+	$(MAKE) -C demos/sosu2		src_only
+	$(MAKE) -C demos/sosu3		src_only
+	$(MAKE) -C apps/type			src_only
+	$(MAKE) -C apps/iroha		src_only
+	$(MAKE) -C demos/chklang		src_only
+	$(MAKE) -C demos/notrec		src_only
+	$(MAKE) -C demos/bball		src_only
+	$(MAKE) -C apps/invader		src_only
+	$(MAKE) -C apps/calc			src_only
+	$(MAKE) -C apps/tview		src_only
+	$(MAKE) -C apps/mmlplay		src_only
+	$(MAKE) -C apps/gview		src_only
 	-$(DEL) haribote.img
 
 refresh :
