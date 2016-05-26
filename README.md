@@ -1,6 +1,6 @@
-# YOS
+# YOS - YourtionOS
 
-YourtionOS 基于 [30dayMakeOS](https://github.com/yourtion/30dayMakeOS) (OSASK) 构建你自己的操作系统。
+YourtionOS 基于 (OSASK) [30dayMakeOS](https://github.com/yourtion/30dayMakeOS) 构建你自己的操作系统。
 
 ## 开发计划（功能）
 
