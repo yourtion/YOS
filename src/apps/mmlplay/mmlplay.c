@@ -1,4 +1,4 @@
-#include "apilib.h"
+#include "../apilib.h"
 
 #include <string.h>	/* strlen */
 

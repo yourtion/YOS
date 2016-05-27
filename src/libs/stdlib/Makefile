@@ -1,9 +1,9 @@
-TOOLSDIR = ../../../
-RULEFILE = ../../ruls/haribote_app.rul
+ROOTPATH = ../../
+RULEFILE = $(ROOTPATH)ruls/haribote_app.rul
 
-include ../../tools.mk
+include $(ROOTPATH)tools.mk
 
-OBJS_API =	stdlib.obj
+OBJS_API = stdlib.obj
 
 #默认动作
 
@@ -14,17 +14,6 @@ default :
 
 stdlib.lib : Makefile $(OBJS_API)
 	$(GOLIB) $(OBJS_API) out:stdlib.lib
-
-#文件生成规则
-
-%.gas : %.c ../stdlib.h Makefile
-	$(CC1) -o $*.gas $*.c
-
-%.nas : %.gas Makefile
-	$(GAS2NASK) $*.gas $*.nas
-
-%.obj : %.nas Makefile
-	$(NASK) $*.nas $*.obj $*.lst
 
 #命令
 

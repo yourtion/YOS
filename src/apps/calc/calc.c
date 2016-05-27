@@ -1,4 +1,4 @@
-#include "apilib.h"
+#include "../apilib.h"
 #include <stdio.h>		/* sprintf */
 
 #define INVALID		-0x7fffffff

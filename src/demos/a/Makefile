@@ -2,7 +2,7 @@ APP      = a
 STACK    = 1k
 MALLOC   = 0k
 
-include ../../app_make.txt
+include ../../app.mk
 
 $(APP).hrb : $(APP).org Makefile 
 	$(COPY) $(APP).org $(APP).hrb

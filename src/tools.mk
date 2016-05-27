@@ -36,3 +36,29 @@ else
   INCPATH  = $(TOOLSDIR)tools/windows/haribote/
   COPYSYS  = copy /B asmhead.bin+bootpack.hrb haribote.sys
 endif
+
+LIBPATH   = $(ROOTPATH)libs/
+APILIBPATH = $(LIBPATH)apilib/
+STDLIBPATH = $(LIBPATH)stdlib/
+
+HARIBOTEPATH = $(ROOTPATH)kernel/
+TOOLSDIR = $(ROOTPATH)../
+
+APPMKFILE = $(ROOTPATH)app.mk
+
+# 其他指令
+
+%.gas : %.c $(ROOTPATH)apilib.h $(ROOTPATH)stdlib.h Makefile
+	$(CC1) -o $*.gas $*.c
+
+%.nas : %.gas Makefile
+	$(GAS2NASK) $*.gas $*.nas
+
+%.obj : %.nas Makefile
+	$(NASK) $*.nas $*.obj $*.lst
+
+%.org : %.bim Makefile
+	$(BIM2HRB) $*.bim $*.org $(MALLOC)
+
+%.hrb : %.org Makefile
+	$(BIM2BIN) -osacmp in:$*.org out:$*.hrb

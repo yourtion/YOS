@@ -1,7 +1,7 @@
-TOOLSDIR = ../../
-RULEFILE = ../ruls/haribote.rul
+ROOTPATH = ../
+RULEFILE = $(ROOTPATH)ruls/haribote.rul
 
-include ../tools.mk
+include $(ROOTPATH)tools.mk
 
 OBJS_BOOTPACK = bootpack.obj naskfunc.obj hankaku.obj graphic.obj dsctbl.obj \
 		int.obj fifo.obj keyboard.obj mouse.obj memory.obj sheet.obj timer.obj \

@@ -1,4 +1,4 @@
-#include "apilib.h"
+#include "../apilib.h"
 
 int rand(void);		/*产生0～32767的随机数*/
 

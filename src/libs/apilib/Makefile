@@ -1,7 +1,7 @@
-TOOLSDIR = ../../../
-RULEFILE = ../../ruls/haribote_app.rul
+ROOTPATH = ../../
+RULEFILE = $(ROOTPATH)ruls/haribote_app.rul
 
-include ../../tools.mk
+include $(ROOTPATH)tools.mk
 
 OBJS_API =	api001.obj api002.obj api003.obj api004.obj api005.obj api006.obj \
 			api007.obj api008.obj api009.obj api010.obj api011.obj api012.obj \
@@ -18,11 +18,6 @@ default :
 
 apilib.lib : Makefile $(OBJS_API)
 	$(GOLIB) $(OBJS_API) out:apilib.lib
-
-#文件生成规则
-
-%.obj : %.nas Makefile
-	$(NASK) $*.nas $*.obj $*.lst
 
 #命令
 

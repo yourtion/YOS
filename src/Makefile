@@ -1,4 +1,4 @@
-TOOLSDIR = ../
+ROOTPATH = ./
 
 include tools.mk
 
