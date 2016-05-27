@@ -1,11 +1,6 @@
-TOOLPATH = ../tools/windows/
-INCPATH  = ../tools/windows/kernel/
+TOOLSDIR = ../
 
-MAKE     = $(TOOLPATH)make.exe -r
-EDIMG    = $(TOOLPATH)edimg.exe
-IMGTOL   = $(TOOLPATH)imgtol.com
-COPY     = copy
-DEL      = del
+include tools.mk
 
 #默认动作
 
@@ -71,8 +66,12 @@ haribote.img : kernel/ipl10.bin kernel/haribote.sys Makefile \
 
 run :
 	$(MAKE) haribote.img
+ifeq ($(UNAME), Darwin)
+	qemu-system-i386 -fda haribote.img
+else
 	$(COPY) haribote.img ..\tools\windows\qemu\fdimage0.bin
 	$(MAKE) -C ../tools/windows/qemu
+endif
 
 install :
 	$(MAKE) haribote.img
@@ -114,8 +113,7 @@ full :
 
 run_full :
 	$(MAKE) full
-	$(COPY) haribote.img ..\tools\windows\qemu\fdimage0.bin
-	$(MAKE) -C ../tools/windows/qemu
+	$(MAKE) run
 
 install_full :
 	$(MAKE) full

@@ -2,26 +2,13 @@ APP      = gview
 STACK    = 4480k
 MALLOC   = 0k
 
-TOOLPATH = ../../../tools/windows/
-INCPATH  = ../../../tools/windows/haribote/
-APILIBPATH   = ../../libs/apilib/
-HARIBOTEPATH = ../../kernel/
+TOOLSDIR = ../../../
+RULEFILE = ../../ruls/haribote_app.rul
 
-MAKE     = $(TOOLPATH)make.exe -r
-NASK     = $(TOOLPATH)nask.exe
-CC1      = $(TOOLPATH)cc1.exe -I$(INCPATH) -I../ -Os -Wall -quiet
-GAS2NASK = $(TOOLPATH)gas2nask.exe -a
-OBJ2BIM  = $(TOOLPATH)obj2bim.exe
-MAKEFONT = $(TOOLPATH)makefont.exe
-BIN2OBJ  = $(TOOLPATH)bin2obj.exe
-BIM2HRB  = $(TOOLPATH)bim2hrb.exe
-BIM2BIN  = $(TOOLPATH)bim2bin.exe
-RULEFILE = ../../haribote_app.rul
-EDIMG    = $(TOOLPATH)edimg.exe
-IMGTOL   = $(TOOLPATH)imgtol.com
-GOLIB    = $(TOOLPATH)golib00.exe 
-COPY     = copy
-DEL      = del
+include ../../tools.mk
+
+APILIBPATH   = ../../libs/apilib/
+STDLIBPATH   = ../../libs/stdlib/
 
 #默认动作
 
@@ -52,20 +39,9 @@ $(APP).bim : $(APP).obj bmp.obj jpeg.obj $(APILIBPATH)apilib.lib Makefile
 	$(BIM2BIN) -osacmp in:$*.org out:$*.hrb
 
 # 运行程序
-
-run :
-	$(MAKE) haribote.img
-	$(COPY) haribote.img ..\..\..\tools\windows\qemu\fdimage0.bin
-	$(MAKE) -C ../../../tools/windows/qemu
-
 full :
 	$(MAKE) -C $(APILIBPATH)
 	$(MAKE) $(APP).hrb
-
-run_full :
-	$(MAKE) -C $(APILIBPATH)
-	$(MAKE) -C ../haribote
-	$(MAKE) run
 
 clean :
 	-$(DEL) *.lst
