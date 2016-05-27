@@ -1,0 +1,120 @@
+	.file	"bball.c"
+	.data
+_table.0:
+	.long	204
+	.long	129
+	.long	195
+	.long	90
+	.long	172
+	.long	58
+	.long	137
+	.long	38
+	.long	98
+	.long	34
+	.long	61
+	.long	46
+	.long	31
+	.long	73
+	.long	15
+	.long	110
+	.long	15
+	.long	148
+	.long	31
+	.long	185
+	.long	61
+	.long	212
+	.long	98
+	.long	224
+	.long	137
+	.long	220
+	.long	172
+	.long	200
+	.long	195
+	.long	168
+	.long	204
+	.long	129
+LC0:
+	.ascii "bball\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	$51200, %eax
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	xorl	%esi, %esi
+	pushl	%ebx
+	call	__alloca
+	leal	-51212(%ebp), %eax
+	pushl	$LC0
+	pushl	$-1
+	pushl	$237
+	pushl	$216
+	pushl	%eax
+	call	_api_openwin
+	pushl	$0
+	pushl	$228
+	movl	%eax, %edi
+	pushl	$207
+	pushl	$29
+	pushl	$8
+	pushl	%eax
+	call	_api_boxfilwin
+	addl	$44, %esp
+L13:
+	leal	1(%esi), %ebx
+	cmpl	$15, %ebx
+	jg	L20
+L12:
+	movl	%ebx, %edx
+	subl	%esi, %edx
+	cmpl	$7, %edx
+	jle	L10
+	movl	$15, %eax
+	subl	%edx, %eax
+	movl	%eax, %edx
+L10:
+	testl	%edx, %edx
+	jne	L21
+L8:
+	incl	%ebx
+	cmpl	$15, %ebx
+	jle	L12
+L20:
+	incl	%esi
+	cmpl	$14, %esi
+	jle	L13
+L14:
+	pushl	$1
+	call	_api_getkey
+	popl	%edx
+	cmpl	$10, %eax
+	jne	L14
+	call	_api_end
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	ret
+L21:
+	movl	$8, %eax
+	subl	%edx, %eax
+	pushl	%eax
+	movl	$_table.0, %eax
+	pushl	4(%eax,%ebx,8)
+	pushl	(%eax,%ebx,8)
+	pushl	4(%eax,%esi,8)
+	pushl	(%eax,%esi,8)
+	pushl	%edi
+	call	_api_linewin
+	addl	$24, %esp
+	jmp	L8
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_linewin;	.scl	2;	.type	32;	.endef
+	.def	_api_boxfilwin;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef

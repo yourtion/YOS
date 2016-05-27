@@ -1,0 +1,56 @@
+	.file	"winhelo3.c"
+	.data
+LC0:
+	.ascii "hello\0"
+LC1:
+	.ascii "hello, world\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ebx
+	call	_api_initmalloc
+	pushl	$7500
+	call	_api_malloc
+	pushl	$LC0
+	pushl	$-1
+	pushl	$50
+	pushl	$150
+	pushl	%eax
+	call	_api_openwin
+	pushl	$6
+	pushl	$43
+	movl	%eax, %ebx
+	pushl	$141
+	pushl	$36
+	pushl	$8
+	pushl	%eax
+	call	_api_boxfilwin
+	addl	$48, %esp
+	pushl	$LC1
+	pushl	$12
+	pushl	$0
+	pushl	$28
+	pushl	$28
+	pushl	%ebx
+	call	_api_putstrwin
+	addl	$24, %esp
+L2:
+	pushl	$1
+	call	_api_getkey
+	popl	%edx
+	cmpl	$10, %eax
+	jne	L2
+	movl	-4(%ebp), %ebx
+	leave
+	jmp	_api_end
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_putstrwin;	.scl	2;	.type	32;	.endef
+	.def	_api_boxfilwin;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef
+	.def	_api_malloc;	.scl	2;	.type	32;	.endef
+	.def	_api_initmalloc;	.scl	2;	.type	32;	.endef

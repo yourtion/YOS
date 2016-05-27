@@ -1,0 +1,15 @@
+	.file	"a.c"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	$65
+	call	_api_putchar
+	popl	%eax
+	leave
+	jmp	_api_end
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_putchar;	.scl	2;	.type	32;	.endef

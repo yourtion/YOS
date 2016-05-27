@@ -1,0 +1,758 @@
+	.file	"mmlplay.c"
+	.data
+_tonetable.0:
+	.long	1071618315
+	.long	1135340056
+	.long	1202850889
+	.long	1274376125
+	.long	1350154473
+	.long	1430438836
+	.long	1515497155
+	.long	1605613306
+	.long	1701088041
+	.long	1802240000
+	.long	1909406767
+	.long	2022946002
+	.balign 4
+_notetable.1:
+	.long	9
+	.long	11
+	.long	0
+	.long	2
+	.long	4
+	.long	5
+	.long	7
+LC0:
+	.ascii "file open error.\12\0"
+LC1:
+	.ascii "mmlplay\0"
+LC3:
+	.ascii "mml syntax error.\12\0"
+LC2:
+	.ascii "karaoke too long.\12\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	$131140, %eax
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	pushl	%ebx
+	leal	-131116(%ebp), %ebx
+	call	__alloca
+	pushl	$30
+	pushl	%ebx
+	movl	$120, -131132(%ebp)
+	movl	$48, -131136(%ebp)
+	movl	$4, -131140(%ebp)
+	movl	$7, -131144(%ebp)
+	movl	$0, -131148(%ebp)
+	call	_api_cmdline
+	movl	%ebx, %ecx
+	popl	%eax
+	movl	%ebx, -131120(%ebp)
+	popl	%edx
+	cmpb	$32, -131116(%ebp)
+	jle	L118
+	leal	-131115(%ebp), %edx
+L6:
+	movl	%edx, %eax
+	movl	%edx, -131120(%ebp)
+	leal	2(%ecx), %edx
+	movl	%eax, %ecx
+	cmpb	$32, -1(%edx)
+	jg	L6
+L118:
+	movl	-131120(%ebp), %ecx
+	cmpb	$32, (%ecx)
+	je	L139
+L120:
+	cld
+	orl	$-1, %ecx
+	xorl	%eax, %eax
+	movl	-131120(%ebp), %edi
+	repne
+	scasb
+	notl	%ecx
+	leal	-1(%ecx), %esi
+	cmpl	$12, %esi
+	jle	L12
+L13:
+	pushl	$LC0
+	call	_end
+	popl	%edi
+L12:
+	testl	%esi, %esi
+	jne	L14
+	pushl	$0
+	call	_end
+	popl	%ebx
+L14:
+	pushl	$LC1
+	leal	-28684(%ebp), %eax
+	pushl	$-1
+	pushl	$112
+	pushl	$256
+	pushl	%eax
+	call	_api_openwin
+	pushl	-131120(%ebp)
+	pushl	%esi
+	movl	%eax, -131124(%ebp)
+	pushl	$0
+	pushl	$32
+	pushl	$128
+	pushl	%eax
+	call	_api_putstrwin
+	addl	$44, %esp
+	pushl	$7
+	pushl	$76
+	pushl	$247
+	pushl	$60
+	pushl	$8
+	pushl	-131124(%ebp)
+	call	_api_boxfilwin
+	pushl	$7
+	pushl	$105
+	pushl	$249
+	pushl	$86
+	pushl	$6
+	pushl	-131124(%ebp)
+	call	_api_boxfilwin
+	addl	$48, %esp
+	pushl	-131120(%ebp)
+	call	_api_fopen
+	popl	%ecx
+	movl	%eax, %esi
+	testl	%eax, %eax
+	je	L13
+	pushl	$0
+	pushl	%eax
+	call	_api_fsize
+	movl	%eax, %edi
+	popl	%eax
+	popl	%edx
+	cmpl	$102399, %edi
+	jle	L16
+	movl	$102399, %edi
+L16:
+	pushl	%esi
+	leal	-131084(%ebp), %ebx
+	pushl	%edi
+	pushl	%ebx
+	call	_api_fread
+	pushl	%esi
+	xorl	%esi, %esi
+	call	_api_fclose
+	movb	$0, -131084(%ebp,%edi)
+	addl	$16, %esp
+	movl	%ebx, %ecx
+	movl	%ebx, -131120(%ebp)
+	cmpb	$0, -131084(%ebp)
+	je	L122
+L40:
+	testl	%esi, %esi
+	jne	L21
+	movl	-131120(%ebp), %edx
+	movb	(%edx), %al
+	cmpb	$32, %al
+	jle	L21
+	cmpb	$47, %al
+	je	L140
+	cmpb	$34, %al
+	je	L141
+L133:
+	movb	%al, (%ecx)
+L134:
+	incl	%ecx
+L19:
+	movl	-131120(%ebp), %edx
+	leal	1(%edx), %eax
+	movl	%eax, -131120(%ebp)
+	cmpb	$0, 1(%edx)
+	jne	L40
+L122:
+	movb	$0, (%ecx)
+	call	_api_alloctimer
+	pushl	$128
+	pushl	%eax
+	movl	%eax, -131128(%ebp)
+	call	_api_inittimer
+	leal	-131084(%ebp), %eax
+	movl	%eax, -131120(%ebp)
+L136:
+	popl	%esi
+	popl	%edi
+L41:
+	movl	-131120(%ebp), %ecx
+	movb	(%ecx), %dl
+	leal	-65(%edx), %eax
+	cmpb	$6, %al
+	jbe	L45
+	cmpb	$82, %dl
+	je	L131
+	cmpb	$60, %dl
+	je	L143
+	cmpb	$62, %dl
+	je	L144
+	cmpb	$79, %dl
+	je	L145
+	cmpb	$81, %dl
+	je	L146
+	cmpb	$76, %dl
+	je	L147
+	movb	(%ecx), %al
+	cmpb	$84, %al
+	je	L148
+	cmpb	$36, %al
+	je	L149
+	testb	%al, %al
+	jne	L80
+	leal	-131084(%ebp), %eax
+	movl	%eax, -131120(%ebp)
+	jmp	L41
+L80:
+	pushl	$LC3
+	call	_end
+	popl	%eax
+	jmp	L41
+L149:
+	cmpb	$75, 1(%ecx)
+	je	L150
+L90:
+	movl	-131120(%ebp), %eax
+	cmpb	$59, (%eax)
+	je	L130
+L113:
+	movl	-131120(%ebp), %edx
+	cmpb	$0, (%edx)
+	je	L80
+	leal	1(%edx), %eax
+	movl	%eax, -131120(%ebp)
+	cmpb	$59, 1(%edx)
+	jne	L113
+L130:
+	incl	-131120(%ebp)
+	jmp	L41
+L150:
+	leal	2(%ecx), %eax
+	movl	%eax, -131120(%ebp)
+	cmpb	$34, 2(%ecx)
+	je	L127
+L96:
+	movl	-131120(%ebp), %edx
+	cmpb	$0, (%edx)
+	je	L80
+	leal	1(%edx), %eax
+	movl	%eax, -131120(%ebp)
+	cmpb	$34, 1(%edx)
+	jne	L96
+L127:
+	incl	-131120(%ebp)
+	xorl	%esi, %esi
+L105:
+	movl	-131120(%ebp), %edx
+	movb	(%edx), %al
+	testb	%al, %al
+	je	L80
+	cmpb	$34, %al
+	je	L98
+	cmpb	$37, %al
+	je	L151
+	movb	%al, -131116(%ebp,%esi)
+	incl	-131120(%ebp)
+L99:
+	incl	%esi
+	cmpl	$31, %esi
+	jle	L105
+L98:
+	cmpl	$30, %esi
+	jle	L106
+	pushl	$LC2
+	call	_end
+	popl	%edx
+L106:
+	pushl	$7
+	movl	-131124(%ebp), %ebx
+	pushl	$103
+	incl	%ebx
+	pushl	$247
+	pushl	$88
+	pushl	$8
+	pushl	%ebx
+	call	_api_boxfilwin
+	addl	$24, %esp
+	movb	$0, -131116(%ebp,%esi)
+	testl	%esi, %esi
+	je	L107
+	leal	-131116(%ebp), %eax
+	leal	0(,%esi,4), %edx
+	pushl	%eax
+	movl	$128, %eax
+	pushl	%esi
+	subl	%edx, %eax
+	pushl	$0
+	pushl	$88
+	pushl	%eax
+	pushl	%ebx
+	call	_api_putstrwin
+	addl	$24, %esp
+L107:
+	pushl	$104
+	pushl	$248
+	pushl	$88
+	pushl	$8
+	pushl	-131124(%ebp)
+	call	_api_refreshwin
+	addl	$20, %esp
+	jmp	L90
+L151:
+	movb	1(%edx), %al
+	movb	%al, -131116(%ebp,%esi)
+	addl	$2, -131120(%ebp)
+	jmp	L99
+L148:
+	pushl	$10
+	leal	-131120(%ebp), %eax
+	pushl	%eax
+	leal	1(%ecx), %eax
+	pushl	%eax
+	call	_strtol
+	movl	%eax, -131132(%ebp)
+L135:
+	addl	$12, %esp
+	jmp	L41
+L147:
+	pushl	$10
+	leal	-131120(%ebp), %eax
+	pushl	%eax
+	leal	1(%ecx), %eax
+	pushl	%eax
+	call	_strtol
+	addl	$12, %esp
+	testl	%eax, %eax
+	movl	%eax, -131136(%ebp)
+	je	L80
+	movl	$192, %edx
+	movl	%edx, %eax
+	cltd
+	idivl	-131136(%ebp)
+	movl	%eax, -131136(%ebp)
+	movl	-131120(%ebp), %eax
+	cmpb	$46, (%eax)
+L138:
+	jne	L41
+	movl	-131120(%ebp), %ecx
+	movl	$2, %ebx
+	leal	1(%ecx), %eax
+	movl	%eax, -131120(%ebp)
+	movl	-131136(%ebp), %eax
+	cltd
+	idivl	%ebx
+	addl	%eax, -131136(%ebp)
+	cmpb	$46, 1(%ecx)
+	jmp	L138
+L146:
+	pushl	$10
+	leal	-131120(%ebp), %eax
+	pushl	%eax
+	leal	1(%ecx), %eax
+	pushl	%eax
+	call	_strtol
+	movl	%eax, -131144(%ebp)
+	jmp	L135
+L145:
+	pushl	$10
+	leal	-131120(%ebp), %eax
+	pushl	%eax
+	leal	1(%ecx), %eax
+	pushl	%eax
+	call	_strtol
+	movl	%eax, -131140(%ebp)
+	jmp	L135
+L144:
+	leal	1(%ecx), %eax
+	incl	-131140(%ebp)
+	movl	%eax, -131120(%ebp)
+	jmp	L41
+L143:
+	leal	1(%ecx), %eax
+	decl	-131140(%ebp)
+	movl	%eax, -131120(%ebp)
+	jmp	L41
+L131:
+	xorl	%esi, %esi
+	movb	$0, -131116(%ebp)
+L47:
+	leal	1(%ecx), %eax
+	movl	%eax, -131120(%ebp)
+	movl	%eax, %edx
+	movb	1(%ecx), %al
+	cmpb	$43, %al
+	je	L49
+	cmpb	$45, %al
+	je	L49
+	cmpb	$35, %al
+	je	L49
+L48:
+	cmpl	-131148(%ebp), %esi
+	je	L52
+	pushl	$8
+	movl	-131124(%ebp), %ebx
+	pushl	$51
+	incl	%ebx
+	pushl	$63
+	pushl	$36
+	pushl	$32
+	pushl	%ebx
+	call	_api_boxfilwin
+	addl	$24, %esp
+	cmpb	$0, -131116(%ebp)
+	je	L53
+	leal	-131116(%ebp), %eax
+	pushl	%eax
+	pushl	$4
+	pushl	$10
+	pushl	$36
+	pushl	$32
+	pushl	%ebx
+	call	_api_putstrwin
+	addl	$24, %esp
+L53:
+	pushl	$52
+	pushl	$64
+	pushl	$36
+	pushl	$32
+	pushl	-131124(%ebp)
+	call	_api_refreshwin
+	addl	$20, %esp
+	movl	-131148(%ebp), %eax
+	subl	$28, %eax
+	cmpl	$79, %eax
+	ja	L54
+	imull	$3, -131148(%ebp), %eax
+	pushl	$7
+	pushl	$76
+	leal	-74(%eax), %edx
+	pushl	%edx
+	subl	$76, %eax
+	pushl	$60
+	pushl	%eax
+	pushl	-131124(%ebp)
+	call	_api_boxfilwin
+	addl	$24, %esp
+L54:
+	leal	-28(%esi), %eax
+	cmpl	$79, %eax
+	ja	L55
+	imull	$3, %esi, %eax
+	pushl	$4
+	pushl	$76
+	leal	-74(%eax), %edx
+	pushl	%edx
+	subl	$76, %eax
+	pushl	$60
+	pushl	%eax
+	pushl	-131124(%ebp)
+	call	_api_boxfilwin
+	addl	$24, %esp
+L55:
+	cmpb	$0, -131116(%ebp)
+	je	L56
+	movl	$12, %edx
+	movl	%esi, %eax
+	movl	%edx, %ecx
+	cltd
+	idivl	%ecx
+	movl	$17, %ecx
+	subl	%eax, %ecx
+	movl	_tonetable.0(,%edx,4), %eax
+	sarl	%cl, %eax
+	pushl	%eax
+L137:
+	call	_api_beep
+	movl	%esi, -131148(%ebp)
+	popl	%ebx
+L52:
+	movl	-131120(%ebp), %edx
+	movb	(%edx), %al
+	subl	$48, %eax
+	cmpb	$9, %al
+	ja	L58
+	pushl	$10
+	leal	-131120(%ebp), %eax
+	pushl	%eax
+	pushl	%edx
+	call	_strtol
+	addl	$12, %esp
+	movl	$192, %edx
+	movl	%eax, %ecx
+	movl	%edx, %eax
+	cltd
+	idivl	%ecx
+	movl	%eax, %esi
+L59:
+	movl	-131120(%ebp), %eax
+	cmpb	$46, (%eax)
+	je	L64
+L124:
+	imull	$125, %esi, %esi
+	movl	%esi, %eax
+	cltd
+	idivl	-131132(%ebp)
+	cmpb	$0, -131116(%ebp)
+	movl	%eax, %ebx
+	movl	%eax, %esi
+	je	L65
+	cmpl	$7, -131144(%ebp)
+	jg	L65
+	movl	-131120(%ebp), %eax
+	cmpb	$38, (%eax)
+	je	L65
+	imull	-131144(%ebp), %esi
+	movl	$8, %edx
+	movl	%esi, %eax
+	movl	%edx, %ecx
+	cltd
+	idivl	%ecx
+	pushl	%eax
+	movl	%eax, %edi
+	pushl	-131128(%ebp)
+	call	_waittimer
+	pushl	$8
+	pushl	$51
+	pushl	$63
+	pushl	$36
+	pushl	$32
+	pushl	-131124(%ebp)
+	call	_api_boxfilwin
+	addl	$32, %esp
+	movl	-131148(%ebp), %eax
+	subl	$28, %eax
+	cmpl	$79, %eax
+	ja	L66
+	imull	$3, -131148(%ebp), %eax
+	pushl	$7
+	pushl	$76
+	leal	-74(%eax), %edx
+	pushl	%edx
+	subl	$76, %eax
+	pushl	$60
+	pushl	%eax
+	pushl	-131124(%ebp)
+	call	_api_boxfilwin
+	addl	$24, %esp
+L66:
+	pushl	$0
+	movl	$0, -131148(%ebp)
+	call	_api_beep
+	popl	%ecx
+L67:
+	subl	%edi, %ebx
+	pushl	%ebx
+	pushl	-131128(%ebp)
+	call	_waittimer
+	jmp	L136
+L65:
+	movl	-131120(%ebp), %eax
+	xorl	%edi, %edi
+	cmpb	$38, (%eax)
+	jne	L67
+	incl	%eax
+	movl	%eax, -131120(%ebp)
+	jmp	L67
+L64:
+	leal	1(%eax), %edi
+	movl	$2, %edx
+	movl	%esi, %eax
+	movl	%edx, %ebx
+	cltd
+	idivl	%ebx
+	movl	%edi, -131120(%ebp)
+	addl	%eax, %esi
+	movl	%edi, %eax
+	cmpb	$46, (%edi)
+	je	L64
+	jmp	L124
+L58:
+	movl	-131136(%ebp), %esi
+	jmp	L59
+L56:
+	pushl	$0
+	jmp	L137
+L49:
+	movb	(%edx), %al
+	movb	%al, -131113(%ebp)
+	cmpb	$45, (%edx)
+	je	L152
+	incl	%esi
+L51:
+	leal	1(%edx), %eax
+	movl	%eax, -131120(%ebp)
+	jmp	L48
+L152:
+	decl	%esi
+	jmp	L51
+L45:
+	cmpb	$82, %dl
+	je	L131
+	imull	$12, -131140(%ebp), %eax
+	movsbl	%dl,%edx
+	movb	$79, -131116(%ebp)
+	addl	_notetable.1-260(,%edx,4), %eax
+	leal	12(%eax), %esi
+	movb	-131140(%ebp), %al
+	addl	$48, %eax
+	movb	%al, -131115(%ebp)
+	movb	(%ecx), %al
+	movb	%al, -131114(%ebp)
+	movb	$32, -131113(%ebp)
+	movb	$0, -131112(%ebp)
+	jmp	L47
+L141:
+	movb	$34, (%ecx)
+	movl	$3, %esi
+	incl	%ecx
+	jmp	L19
+L140:
+	movb	1(%edx), %al
+	cmpb	$42, %al
+	je	L153
+	cmpb	$47, %al
+	je	L154
+	movb	$47, (%ecx)
+	movl	-131120(%ebp), %eax
+	movb	(%eax), %al
+	subl	$97, %eax
+	cmpb	$25, %al
+	ja	L134
+	movb	$15, (%ecx)
+	jmp	L134
+L154:
+	movl	$2, %esi
+	jmp	L19
+L153:
+	movl	$1, %esi
+	jmp	L19
+L21:
+	cmpl	$1, %esi
+	je	L155
+L32:
+	cmpl	$2, %esi
+	je	L156
+L34:
+	cmpl	$3, %esi
+	jne	L19
+	movl	-131120(%ebp), %eax
+	movb	(%eax), %al
+	movb	%al, (%ecx)
+	incl	%ecx
+	movl	-131120(%ebp), %edx
+	movb	(%edx), %al
+	cmpb	$34, %al
+	je	L132
+	cmpb	$37, %al
+	jne	L19
+	leal	1(%edx), %eax
+	movl	%eax, -131120(%ebp)
+	movb	1(%edx), %al
+	jmp	L133
+L132:
+	xorl	%esi, %esi
+	jmp	L19
+L156:
+	movl	-131120(%ebp), %eax
+	cmpb	$10, (%eax)
+	jne	L34
+	jmp	L132
+L155:
+	movl	-131120(%ebp), %eax
+	cmpb	$42, (%eax)
+	jne	L32
+	cmpb	$47, 1(%eax)
+	jne	L32
+	incl	%eax
+	movl	%eax, -131120(%ebp)
+	jmp	L132
+L139:
+	leal	1(%ecx), %edx
+L11:
+	movl	%edx, %eax
+	movl	%edx, -131120(%ebp)
+	leal	2(%ecx), %edx
+	movl	%eax, %ecx
+	cmpb	$32, -1(%edx)
+	je	L11
+	jmp	L120
+	.balign 2
+.globl _waittimer
+	.def	_waittimer;	.scl	2;	.type	32;	.endef
+_waittimer:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ebx
+	pushl	12(%ebp)
+	pushl	8(%ebp)
+	call	_api_settimer
+	popl	%eax
+	popl	%edx
+L158:
+	pushl	$1
+	call	_api_getkey
+	movl	%eax, %ebx
+	popl	%eax
+	cmpl	$81, %ebx
+	je	L162
+	cmpl	$113, %ebx
+	je	L162
+L161:
+	addl	$-128, %ebx
+	jne	L158
+	movl	-4(%ebp), %ebx
+	leave
+	ret
+L162:
+	pushl	$0
+	call	_api_beep
+	call	_api_end
+	popl	%ecx
+	jmp	L161
+	.balign 2
+.globl _end
+	.def	_end;	.scl	2;	.type	32;	.endef
+_end:
+	pushl	%ebp
+	movl	%esp, %ebp
+	movl	8(%ebp), %eax
+	testl	%eax, %eax
+	je	L165
+	pushl	%eax
+	call	_api_putstr0
+	popl	%eax
+L165:
+	pushl	$0
+	call	_api_beep
+	popl	%ecx
+	leave
+	jmp	_api_end
+	.def	_api_putstr0;	.scl	2;	.type	32;	.endef
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_settimer;	.scl	2;	.type	32;	.endef
+	.def	_waittimer;	.scl	2;	.type	32;	.endef
+	.def	_strtol;	.scl	2;	.type	32;	.endef
+	.def	_api_beep;	.scl	2;	.type	32;	.endef
+	.def	_api_refreshwin;	.scl	2;	.type	32;	.endef
+	.def	_api_inittimer;	.scl	2;	.type	32;	.endef
+	.def	_api_alloctimer;	.scl	2;	.type	32;	.endef
+	.def	_api_fclose;	.scl	2;	.type	32;	.endef
+	.def	_api_fread;	.scl	2;	.type	32;	.endef
+	.def	_api_fsize;	.scl	2;	.type	32;	.endef
+	.def	_api_fopen;	.scl	2;	.type	32;	.endef
+	.def	_api_boxfilwin;	.scl	2;	.type	32;	.endef
+	.def	_api_putstrwin;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef
+	.def	_end;	.scl	2;	.type	32;	.endef
+	.def	_api_cmdline;	.scl	2;	.type	32;	.endef

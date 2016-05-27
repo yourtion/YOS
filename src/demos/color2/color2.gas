@@ -1,0 +1,143 @@
+	.file	"color2.c"
+	.data
+LC0:
+	.ascii "color2\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	xorl	%edi, %edi
+	pushl	%ebx
+	subl	$12, %esp
+	call	_api_initmalloc
+	pushl	$23616
+	call	_api_malloc
+	movl	%eax, -16(%ebp)
+	pushl	$LC0
+	pushl	$-1
+	pushl	$164
+	pushl	$144
+	pushl	%eax
+	call	_api_openwin
+	addl	$24, %esp
+	movl	$0, -24(%ebp)
+	movl	%eax, -20(%ebp)
+L11:
+	movl	-24(%ebp), %eax
+	movl	-16(%ebp), %edx
+	xorl	%esi, %esi
+	leal	4040(%edx,%eax), %ebx
+L10:
+	pushl	%edi
+	leal	(%edi,%edi), %eax
+	pushl	%esi
+	pushl	$0
+	pushl	%eax
+	leal	(%esi,%esi), %eax
+	pushl	%eax
+	incl	%esi
+	call	_rgb2pal
+	addl	$20, %esp
+	movb	%al, (%ebx)
+	incl	%ebx
+	cmpl	$127, %esi
+	jle	L10
+	incl	%edi
+	addl	$144, -24(%ebp)
+	cmpl	$127, %edi
+	jle	L11
+	pushl	$156
+	pushl	$136
+	pushl	$28
+	pushl	$8
+	pushl	-20(%ebp)
+	call	_api_refreshwin
+	pushl	$1
+	call	_api_getkey
+	addl	$24, %esp
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	jmp	_api_end
+	.data
+	.balign 4
+_table.0:
+	.long	3
+	.long	1
+	.long	0
+	.long	2
+	.text
+	.balign 2
+.globl _rgb2pal
+	.def	_rgb2pal;	.scl	2;	.type	32;	.endef
+_rgb2pal:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	movl	$256, %edi
+	pushl	%ebx
+	movl	$256, %esi
+	subl	$20, %esp
+	imull	$21, 8(%ebp), %ecx
+	movl	20(%ebp), %edx
+	movl	24(%ebp), %eax
+	andl	$1, %edx
+	andl	$1, %eax
+	leal	(%edx,%eax,2), %eax
+	movl	_table.0(,%eax,4), %ebx
+	movl	%ecx, %eax
+	cltd
+	idivl	%esi
+	imull	$21, 12(%ebp), %esi
+	movl	%eax, %ecx
+	movl	%esi, %eax
+	cltd
+	idivl	%edi
+	imull	$21, 16(%ebp), %esi
+	movl	%eax, -32(%ebp)
+	addl	%ebx, %ecx
+	movl	%esi, %eax
+	cltd
+	idivl	%edi
+	movl	%eax, %esi
+	movl	$4, %edi
+	movl	%ecx, %eax
+	cltd
+	idivl	%edi
+	movl	%eax, %ecx
+	movl	-32(%ebp), %eax
+	addl	%ebx, %eax
+	leal	(%ebx,%esi), %ebx
+	cltd
+	idivl	%edi
+	movl	%eax, -32(%ebp)
+	movl	%ebx, %eax
+	cltd
+	idivl	%edi
+	movl	%eax, %ebx
+	imull	$6, -32(%ebp), %eax
+	imull	$36, %ebx, %edx
+	addl	$20, %esp
+	leal	(%eax,%ecx), %eax
+	popl	%ebx
+	popl	%esi
+	leal	16(%edx,%eax), %eax
+	popl	%edi
+	movzbl	%al, %eax
+	popl	%ebp
+	ret
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_refreshwin;	.scl	2;	.type	32;	.endef
+	.def	_rgb2pal;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef
+	.def	_api_malloc;	.scl	2;	.type	32;	.endef
+	.def	_api_initmalloc;	.scl	2;	.type	32;	.endef

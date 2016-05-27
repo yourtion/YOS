@@ -1,0 +1,84 @@
+	.file	"stars2.c"
+	.data
+LC0:
+	.ascii "stars2\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	movl	$49, %edi
+	pushl	%ebx
+	call	_api_initmalloc
+	pushl	$15000
+	call	_api_malloc
+	pushl	$LC0
+	pushl	$-1
+	pushl	$100
+	pushl	$150
+	pushl	%eax
+	call	_api_openwin
+	pushl	$0
+	pushl	$93
+	movl	%eax, %ebx
+	pushl	$143
+	leal	1(%eax), %eax
+	pushl	$26
+	pushl	$6
+	pushl	%eax
+	call	_api_boxfilwin
+	addl	$48, %esp
+L6:
+	call	_rand
+	movl	$137, %edx
+	movl	%edx, %ecx
+	cltd
+	idivl	%ecx
+	leal	6(%edx), %esi
+	call	_rand
+	movl	$67, %edx
+	pushl	$3
+	movl	%edx, %ecx
+	cltd
+	idivl	%ecx
+	addl	$26, %edx
+	leal	1(%ebx), %eax
+	pushl	%edx
+	pushl	%esi
+	pushl	%eax
+	call	_api_point
+	addl	$16, %esp
+	decl	%edi
+	jns	L6
+	pushl	$94
+	pushl	$144
+	pushl	$26
+	pushl	$6
+	pushl	%ebx
+	call	_api_refreshwin
+	addl	$20, %esp
+L7:
+	pushl	$1
+	call	_api_getkey
+	popl	%edx
+	cmpl	$10, %eax
+	jne	L7
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	jmp	_api_end
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_refreshwin;	.scl	2;	.type	32;	.endef
+	.def	_api_point;	.scl	2;	.type	32;	.endef
+	.def	_rand;	.scl	2;	.type	32;	.endef
+	.def	_api_boxfilwin;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef
+	.def	_api_malloc;	.scl	2;	.type	32;	.endef
+	.def	_api_initmalloc;	.scl	2;	.type	32;	.endef

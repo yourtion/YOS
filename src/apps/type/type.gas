@@ -1,0 +1,71 @@
+	.file	"type.c"
+	.data
+LC0:
+	.ascii "File not found.\12\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ebx
+	subl	$36, %esp
+	leal	-36(%ebp), %ebx
+	pushl	$30
+	pushl	%ebx
+	call	_api_cmdline
+	movl	%ebx, %eax
+	popl	%ebx
+	popl	%edx
+	cmpb	$32, -36(%ebp)
+	jle	L19
+L6:
+	incl	%eax
+	cmpb	$32, (%eax)
+	jg	L6
+L19:
+	cmpb	$32, (%eax)
+	je	L11
+L21:
+	pushl	%eax
+	call	_api_fopen
+	popl	%ecx
+	movl	%eax, %ebx
+	testl	%eax, %eax
+	je	L12
+L13:
+	pushl	%ebx
+	leal	-37(%ebp), %eax
+	pushl	$1
+	pushl	%eax
+	call	_api_fread
+	addl	$12, %esp
+	testl	%eax, %eax
+	je	L17
+	movsbl	-37(%ebp),%eax
+	pushl	%eax
+	call	_api_putchar
+	popl	%edx
+	jmp	L13
+L17:
+	call	_api_end
+	movl	-4(%ebp), %ebx
+	leave
+	ret
+L12:
+	pushl	$LC0
+	call	_api_putstr0
+	popl	%eax
+	jmp	L17
+L11:
+	incl	%eax
+	cmpb	$32, (%eax)
+	je	L11
+	jmp	L21
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_putstr0;	.scl	2;	.type	32;	.endef
+	.def	_api_putchar;	.scl	2;	.type	32;	.endef
+	.def	_api_fread;	.scl	2;	.type	32;	.endef
+	.def	_api_fopen;	.scl	2;	.type	32;	.endef
+	.def	_api_cmdline;	.scl	2;	.type	32;	.endef

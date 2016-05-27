@@ -1,0 +1,54 @@
+	.file	"beepdown.c"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	pushl	%ebx
+	movl	$20000000, %ebx
+	call	_api_alloctimer
+	pushl	$128
+	movl	%eax, %esi
+	pushl	%eax
+	call	_api_inittimer
+	popl	%edx
+	popl	%ecx
+L7:
+	pushl	%ebx
+	call	_api_beep
+	pushl	$1
+	pushl	%esi
+	call	_api_settimer
+	pushl	$1
+	call	_api_getkey
+	addl	$16, %esp
+	addl	$-128, %eax
+	jne	L3
+	movl	%ebx, %eax
+	movl	$100, %edx
+	movl	%edx, %edi
+	cltd
+	idivl	%edi
+	subl	%eax, %ebx
+	cmpl	$19999, %ebx
+	jg	L7
+L3:
+	pushl	$0
+	call	_api_beep
+	popl	%eax
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	jmp	_api_end
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_settimer;	.scl	2;	.type	32;	.endef
+	.def	_api_beep;	.scl	2;	.type	32;	.endef
+	.def	_api_inittimer;	.scl	2;	.type	32;	.endef
+	.def	_api_alloctimer;	.scl	2;	.type	32;	.endef

@@ -1,0 +1,56 @@
+	.file	"sosu2.c"
+	.data
+LC0:
+	.ascii "%d \0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	$10008, %eax
+	movl	%esp, %ebp
+	pushl	%esi
+	pushl	%ebx
+	xorl	%esi, %esi
+	call	__alloca
+L6:
+	movb	$0, -10008(%ebp,%esi)
+	incl	%esi
+	cmpl	$9999, %esi
+	jle	L6
+	movl	$2, %esi
+L17:
+	cmpb	$0, -10008(%ebp,%esi)
+	je	L23
+L9:
+	incl	%esi
+	cmpl	$9999, %esi
+	jle	L17
+	call	_api_end
+	leal	-8(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%ebp
+	ret
+L23:
+	pushl	%esi
+	leal	-10016(%ebp), %ebx
+	pushl	$LC0
+	pushl	%ebx
+	call	_sprintf
+	pushl	%ebx
+	call	_api_putstr0
+	addl	$16, %esp
+	leal	(%esi,%esi), %eax
+	cmpl	$9999, %eax
+	jg	L9
+L16:
+	movb	$1, -10008(%ebp,%eax)
+	addl	%esi, %eax
+	cmpl	$9999, %eax
+	jle	L16
+	jmp	L9
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_putstr0;	.scl	2;	.type	32;	.endef
+	.def	_sprintf;	.scl	2;	.type	32;	.endef

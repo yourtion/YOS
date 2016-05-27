@@ -1,0 +1,65 @@
+	.file	"sosu3.c"
+	.data
+LC0:
+	.ascii "%d \0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	xorl	%esi, %esi
+	pushl	%ebx
+	pushl	%edx
+	pushl	%edx
+	call	_api_initmalloc
+	pushl	$10000
+	call	_api_malloc
+	movl	%eax, %edi
+	popl	%eax
+L6:
+	movb	$0, (%esi,%edi)
+	incl	%esi
+	cmpl	$9999, %esi
+	jle	L6
+	movl	$2, %esi
+L17:
+	cmpb	$0, (%esi,%edi)
+	je	L23
+L9:
+	incl	%esi
+	cmpl	$9999, %esi
+	jle	L17
+	call	_api_end
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	ret
+L23:
+	pushl	%esi
+	leal	-20(%ebp), %ebx
+	pushl	$LC0
+	pushl	%ebx
+	call	_sprintf
+	pushl	%ebx
+	call	_api_putstr0
+	addl	$16, %esp
+	leal	(%esi,%esi), %eax
+	cmpl	$9999, %eax
+	jg	L9
+L16:
+	movb	$1, (%eax,%edi)
+	addl	%esi, %eax
+	cmpl	$9999, %eax
+	jle	L16
+	jmp	L9
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_putstr0;	.scl	2;	.type	32;	.endef
+	.def	_sprintf;	.scl	2;	.type	32;	.endef
+	.def	_api_malloc;	.scl	2;	.type	32;	.endef
+	.def	_api_initmalloc;	.scl	2;	.type	32;	.endef

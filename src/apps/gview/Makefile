@@ -16,7 +16,7 @@ MAKEFONT = $(TOOLPATH)makefont.exe
 BIN2OBJ  = $(TOOLPATH)bin2obj.exe
 BIM2HRB  = $(TOOLPATH)bim2hrb.exe
 BIM2BIN  = $(TOOLPATH)bim2bin.exe
-RULEFILE = ../../haribote.rul
+RULEFILE = ../../haribote_app.rul
 EDIMG    = $(TOOLPATH)edimg.exe
 IMGTOL   = $(TOOLPATH)imgtol.com
 GOLIB    = $(TOOLPATH)golib00.exe 
@@ -36,7 +36,7 @@ $(APP).bim : $(APP).obj bmp.obj jpeg.obj $(APILIBPATH)apilib.lib Makefile
 
 # 其他指令
 
-%.gas : %.c ../libs/apilib.h Makefile
+%.gas : %.c ../apilib.h Makefile
 	$(CC1) -o $*.gas $*.c
 
 %.nas : %.gas Makefile

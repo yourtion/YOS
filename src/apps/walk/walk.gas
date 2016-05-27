@@ -1,0 +1,115 @@
+	.file	"walk.c"
+	.data
+LC0:
+	.ascii "walk\0"
+LC1:
+	.ascii "*\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	movl	$76, %edi
+	pushl	%ebx
+	movl	$56, %esi
+	pushl	%edx
+	call	_api_initmalloc
+	pushl	$16000
+	call	_api_malloc
+	pushl	$LC0
+	pushl	$-1
+	pushl	$100
+	pushl	$160
+	pushl	%eax
+	call	_api_openwin
+	movl	%eax, -16(%ebp)
+	pushl	$0
+	pushl	$95
+	pushl	$155
+	pushl	$24
+	pushl	$4
+	pushl	%eax
+	call	_api_boxfilwin
+	addl	$48, %esp
+	pushl	$LC1
+	pushl	$1
+	pushl	$3
+	pushl	$56
+	pushl	$76
+L10:
+	pushl	-16(%ebp)
+	call	_api_putstrwin
+	addl	$24, %esp
+	pushl	$1
+	call	_api_getkey
+	pushl	$LC1
+	pushl	$1
+	movl	%eax, %ebx
+	pushl	$0
+	pushl	%esi
+	pushl	%edi
+	pushl	-16(%ebp)
+	call	_api_putstrwin
+	addl	$28, %esp
+	cmpl	$52, %ebx
+	je	L11
+L5:
+	cmpl	$54, %ebx
+	je	L12
+L6:
+	cmpl	$56, %ebx
+	je	L13
+L7:
+	cmpl	$50, %ebx
+	je	L14
+L8:
+	cmpl	$10, %ebx
+	je	L3
+	pushl	$LC1
+	pushl	$1
+	pushl	$3
+	pushl	%esi
+	pushl	%edi
+	jmp	L10
+L3:
+	pushl	-16(%ebp)
+	call	_api_closewin
+	popl	%eax
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	jmp	_api_end
+L14:
+	cmpl	$79, %esi
+	jg	L8
+	addl	$8, %esi
+	jmp	L8
+L13:
+	cmpl	$24, %esi
+	jle	L7
+	subl	$8, %esi
+	jmp	L7
+L12:
+	cmpl	$147, %edi
+	jg	L6
+	addl	$8, %edi
+	jmp	L6
+L11:
+	cmpl	$4, %edi
+	jle	L5
+	subl	$8, %edi
+	jmp	L5
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_closewin;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_putstrwin;	.scl	2;	.type	32;	.endef
+	.def	_api_boxfilwin;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef
+	.def	_api_malloc;	.scl	2;	.type	32;	.endef
+	.def	_api_initmalloc;	.scl	2;	.type	32;	.endef

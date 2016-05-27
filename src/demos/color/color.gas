@@ -1,0 +1,82 @@
+	.file	"color.c"
+	.data
+LC0:
+	.ascii "color\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	xorl	%edi, %edi
+	pushl	%ebx
+	subl	$32, %esp
+	call	_api_initmalloc
+	pushl	$23616
+	call	_api_malloc
+	movl	%eax, -16(%ebp)
+	pushl	$LC0
+	pushl	$-1
+	pushl	$164
+	pushl	$144
+	pushl	%eax
+	call	_api_openwin
+	addl	$24, %esp
+	movl	$0, -36(%ebp)
+	movl	%eax, -20(%ebp)
+L11:
+	movl	-36(%ebp), %eax
+	movl	-16(%ebp), %edx
+	xorl	%esi, %esi
+	leal	4040(%edx,%eax), %eax
+	movl	%eax, -44(%ebp)
+L10:
+	leal	(%esi,%esi), %edx
+	movl	$43, %ebx
+	movl	%edx, %eax
+	movl	%edx, -24(%ebp)
+	cltd
+	idivl	%ebx
+	leal	(%edi,%edi), %ecx
+	movl	%eax, -28(%ebp)
+	movl	%ecx, %eax
+	incl	%esi
+	cltd
+	idivl	%ebx
+	imull	$6, %eax, %eax
+	addl	-28(%ebp), %eax
+	movl	-44(%ebp), %ebx
+	addl	$16, %eax
+	movb	%al, (%ebx)
+	incl	%ebx
+	movl	%ebx, -44(%ebp)
+	cmpl	$127, %esi
+	jle	L10
+	incl	%edi
+	addl	$144, -36(%ebp)
+	cmpl	$127, %edi
+	jle	L11
+	pushl	$156
+	pushl	$136
+	pushl	$28
+	pushl	$8
+	pushl	-20(%ebp)
+	call	_api_refreshwin
+	pushl	$1
+	call	_api_getkey
+	addl	$24, %esp
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	jmp	_api_end
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_refreshwin;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef
+	.def	_api_malloc;	.scl	2;	.type	32;	.endef
+	.def	_api_initmalloc;	.scl	2;	.type	32;	.endef

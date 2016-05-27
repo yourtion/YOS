@@ -1,0 +1,86 @@
+	.file	"chklang.c"
+	.data
+_s1.0:
+	.byte	-109
+	.byte	-6
+	.byte	-106
+	.byte	123
+	.byte	-116
+	.byte	-22
+	.byte	-125
+	.byte	86
+	.byte	-125
+	.byte	116
+	.byte	-125
+	.byte	103
+	.byte	74
+	.byte	73
+	.byte	83
+	.byte	-125
+	.byte	-126
+	.byte	-127
+	.byte	91
+	.byte	-125
+	.byte	104
+	.byte	10
+	.byte	0
+_s2.1:
+	.byte	-58
+	.byte	-4
+	.byte	-53
+	.byte	-36
+	.byte	-72
+	.byte	-20
+	.byte	69
+	.byte	85
+	.byte	67
+	.byte	-91
+	.byte	-30
+	.byte	-95
+	.byte	-68
+	.byte	-91
+	.byte	-55
+	.byte	10
+	.byte	0
+LC0:
+	.ascii "English ASCII mode\12\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ebx
+	call	_api_getlang
+	movl	%eax, %ebx
+	testl	%eax, %eax
+	je	L5
+L2:
+	cmpl	$1, %ebx
+	je	L6
+L3:
+	cmpl	$2, %ebx
+	je	L7
+L4:
+	movl	-4(%ebp), %ebx
+	leave
+	jmp	_api_end
+L7:
+	pushl	$_s2.1
+	call	_api_putstr0
+	popl	%eax
+	jmp	L4
+L6:
+	pushl	$_s1.0
+	call	_api_putstr0
+	popl	%edx
+	jmp	L3
+L5:
+	pushl	$LC0
+	call	_api_putstr0
+	popl	%ecx
+	jmp	L2
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_putstr0;	.scl	2;	.type	32;	.endef
+	.def	_api_getlang;	.scl	2;	.type	32;	.endef

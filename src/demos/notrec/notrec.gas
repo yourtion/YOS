@@ -1,0 +1,59 @@
+	.file	"notrec.c"
+	.data
+LC0:
+	.ascii "notrec\0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	$10512, %eax
+	movl	%esp, %ebp
+	pushl	%ebx
+	call	__alloca
+	pushl	$LC0
+	pushl	$255
+	leal	-10516(%ebp), %eax
+	pushl	$70
+	pushl	$150
+	pushl	%eax
+	call	_api_openwin
+	pushl	$255
+	pushl	$69
+	movl	%eax, %ebx
+	pushl	$34
+	pushl	$50
+	pushl	$0
+	pushl	%eax
+	call	_api_boxfilwin
+	addl	$44, %esp
+	pushl	$255
+	pushl	$69
+	pushl	$149
+	pushl	$50
+	pushl	$115
+	pushl	%ebx
+	call	_api_boxfilwin
+	pushl	$255
+	pushl	$49
+	pushl	$99
+	pushl	$30
+	pushl	$50
+	pushl	%ebx
+	call	_api_boxfilwin
+	addl	$48, %esp
+L2:
+	pushl	$1
+	call	_api_getkey
+	popl	%edx
+	cmpl	$10, %eax
+	jne	L2
+	call	_api_end
+	movl	-4(%ebp), %ebx
+	leave
+	ret
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_boxfilwin;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef

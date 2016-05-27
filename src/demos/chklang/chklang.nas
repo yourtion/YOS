@@ -1,0 +1,91 @@
+[FORMAT "WCOFF"]
+[INSTRSET "i486p"]
+[OPTIMIZE 1]
+[OPTION 1]
+[BITS 32]
+	EXTERN	_api_getlang
+	EXTERN	_api_end
+	EXTERN	_s2.1
+	EXTERN	_api_putstr0
+	EXTERN	_s1.0
+[FILE "chklang.c"]
+[SECTION .data]
+_s1.0:
+	DB	-109
+	DB	-6
+	DB	-106
+	DB	123
+	DB	-116
+	DB	-22
+	DB	-125
+	DB	86
+	DB	-125
+	DB	116
+	DB	-125
+	DB	103
+	DB	74
+	DB	73
+	DB	83
+	DB	-125
+	DB	-126
+	DB	-127
+	DB	91
+	DB	-125
+	DB	104
+	DB	10
+	DB	0
+_s2.1:
+	DB	-58
+	DB	-4
+	DB	-53
+	DB	-36
+	DB	-72
+	DB	-20
+	DB	69
+	DB	85
+	DB	67
+	DB	-91
+	DB	-30
+	DB	-95
+	DB	-68
+	DB	-91
+	DB	-55
+	DB	10
+	DB	0
+LC0:
+	DB	"English ASCII mode",0x0A,0x00
+[SECTION .text]
+	GLOBAL	_HariMain
+_HariMain:
+	PUSH	EBP
+	MOV	EBP,ESP
+	PUSH	EBX
+	CALL	_api_getlang
+	MOV	EBX,EAX
+	TEST	EAX,EAX
+	JE	L5
+L2:
+	CMP	EBX,1
+	JE	L6
+L3:
+	CMP	EBX,2
+	JE	L7
+L4:
+	MOV	EBX,DWORD [-4+EBP]
+	LEAVE
+	JMP	_api_end
+L7:
+	PUSH	_s2.1
+	CALL	_api_putstr0
+	POP	EAX
+	JMP	L4
+L6:
+	PUSH	_s1.0
+	CALL	_api_putstr0
+	POP	EDX
+	JMP	L3
+L5:
+	PUSH	LC0
+	CALL	_api_putstr0
+	POP	ECX
+	JMP	L2

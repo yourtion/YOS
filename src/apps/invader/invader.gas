@@ -1,0 +1,823 @@
+	.file	"invader.c"
+	.data
+_charset:
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	67
+	.byte	95
+	.byte	95
+	.byte	95
+	.byte	127
+	.byte	31
+	.byte	31
+	.byte	31
+	.byte	31
+	.byte	0
+	.byte	32
+	.byte	63
+	.byte	0
+	.byte	0
+	.byte	15
+	.byte	127
+	.byte	-1
+	.byte	-49
+	.byte	-49
+	.byte	-49
+	.byte	-1
+	.byte	-1
+	.byte	-32
+	.byte	-1
+	.byte	-1
+	.byte	-64
+	.byte	-64
+	.byte	-64
+	.byte	0
+	.byte	0
+	.byte	-16
+	.byte	-2
+	.byte	-1
+	.byte	-13
+	.byte	-13
+	.byte	-13
+	.byte	-1
+	.byte	-1
+	.byte	7
+	.byte	-1
+	.byte	-1
+	.byte	3
+	.byte	3
+	.byte	3
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	-62
+	.byte	-6
+	.byte	-6
+	.byte	-6
+	.byte	-2
+	.byte	-8
+	.byte	-8
+	.byte	-8
+	.byte	-8
+	.byte	0
+	.byte	4
+	.byte	-4
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	1
+	.byte	1
+	.byte	1
+	.byte	1
+	.byte	1
+	.byte	1
+	.byte	1
+	.byte	67
+	.byte	71
+	.byte	79
+	.byte	95
+	.byte	127
+	.byte	127
+	.byte	0
+	.byte	24
+	.byte	126
+	.byte	-1
+	.byte	-61
+	.byte	-61
+	.byte	-61
+	.byte	-61
+	.byte	-1
+	.byte	-1
+	.byte	-1
+	.byte	-25
+	.byte	-25
+	.byte	-25
+	.byte	-25
+	.byte	-1
+	.byte	0
+	.byte	0
+	.byte	0
+	.byte	-128
+	.byte	-128
+	.byte	-128
+	.byte	-128
+	.byte	-128
+	.byte	-128
+	.byte	-128
+	.byte	-62
+	.byte	-30
+	.byte	-14
+	.byte	-6
+	.byte	-2
+	.byte	-2
+	.byte	0
+	.byte	0
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	24
+	.byte	0
+_invstr0.0:
+	.ascii " abcd abcd abcd abcd abcd \0"
+	.space 5
+LC0:
+	.ascii "invader\0"
+LC1:
+	.ascii "HIGH:00000000\0"
+LC2:
+	.ascii "SCORE:00000000\0"
+LC3:
+	.ascii "efg\0"
+LC4:
+	.ascii "efg \0"
+LC5:
+	.ascii " efg\0"
+LC8:
+	.ascii "h\0"
+LC7:
+	.ascii " \0"
+LC6:
+	.ascii "                         \0"
+LC9:
+	.ascii "GAME OVER\0"
+LC10:
+	.ascii "                                        \0"
+	.text
+	.balign 2
+.globl _HariMain
+	.def	_HariMain;	.scl	2;	.type	32;	.endef
+_HariMain:
+	pushl	%ebp
+	movl	$87964, %eax
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	pushl	%ebx
+	leal	-87708(%ebp), %ebx
+	call	__alloca
+	pushl	$LC0
+	pushl	$-1
+	pushl	$261
+	pushl	$336
+	pushl	%ebx
+	movl	$0, -87936(%ebp)
+	call	_api_openwin
+	pushl	$0
+	pushl	$254
+	movl	%eax, %edi
+	pushl	$329
+	pushl	$27
+	pushl	$6
+	pushl	%eax
+	call	_api_boxfilwin
+	addl	$44, %esp
+	call	_api_alloctimer
+	pushl	$128
+	pushl	%eax
+	movl	%eax, -87924(%ebp)
+	call	_api_inittimer
+	pushl	$LC1
+	pushl	$7
+	pushl	$0
+	pushl	$22
+	pushl	%ebx
+	pushl	%edi
+	movl	$0, -87972(%ebp)
+	call	_putstr
+	addl	$32, %esp
+L2:
+	pushl	$LC2
+	leal	-87708(%ebp), %ebx
+	pushl	$7
+	pushl	$0
+	pushl	$4
+	pushl	%ebx
+	pushl	%edi
+	movl	$0, -87968(%ebp)
+	movl	$1, -87976(%ebp)
+	call	_putstr
+	pushl	$LC3
+	pushl	$6
+	pushl	$13
+	pushl	$18
+	pushl	%ebx
+	pushl	%edi
+	movl	$20, -87952(%ebp)
+	movl	$18, -87928(%ebp)
+	call	_putstr
+	leal	-87920(%ebp), %eax
+	addl	$48, %esp
+	pushl	%eax
+	pushl	-87924(%ebp)
+	pushl	$100
+	call	_wait
+	addl	$12, %esp
+L3:
+	leal	-87920(%ebp), %eax
+	xorl	%esi, %esi
+	pushl	%eax
+	pushl	-87924(%ebp)
+	pushl	$100
+	call	_wait
+	addl	$12, %esp
+	movl	$7, -87944(%ebp)
+	movl	$1, -87948(%ebp)
+	movl	$6, -87964(%ebp)
+L13:
+	xorl	%ecx, %ecx
+L12:
+	movl	%esi, %ebx
+	leal	-12(%ebp), %eax
+	sall	$5, %ebx
+	leal	(%eax,%ebx), %edx
+	movb	_invstr0.0(%ecx), %al
+	movb	%al, -87888(%ecx,%edx)
+	incl	%ecx
+	cmpl	$26, %ecx
+	jle	L12
+	leal	-87900(%ebx,%ebp), %eax
+	leal	1(%esi), %ebx
+	pushl	%eax
+	movl	%ebx, %esi
+	pushl	$2
+	leal	-87708(%ebp), %eax
+	pushl	%ebx
+	pushl	$7
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+	cmpl	$5, %ebx
+	jle	L13
+	leal	-87920(%ebp), %eax
+	movl	-87952(%ebp), %ebx
+	pushl	%eax
+	movl	%ebx, -87956(%ebp)
+	pushl	-87924(%ebp)
+	pushl	$100
+	movb	$0, -87920(%ebp)
+	movb	$0, -87919(%ebp)
+	movb	$0, -87918(%ebp)
+	movl	$0, -87940(%ebp)
+	movl	$0, -87932(%ebp)
+	movl	$1, -87960(%ebp)
+	call	_wait
+	addl	$12, %esp
+L14:
+	cmpl	$0, -87932(%ebp)
+	je	L17
+	decl	-87932(%ebp)
+	movb	$0, -87918(%ebp)
+L17:
+	leal	-87920(%ebp), %ebx
+	pushl	%ebx
+	pushl	-87924(%ebp)
+	pushl	$4
+	call	_wait
+	addl	$12, %esp
+	cmpb	$0, -87920(%ebp)
+	je	L18
+	cmpl	$0, -87928(%ebp)
+	jle	L18
+	pushl	$LC4
+	decl	-87928(%ebp)
+	pushl	$6
+	leal	-87708(%ebp), %eax
+	pushl	$13
+	pushl	-87928(%ebp)
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+	movb	$0, -87920(%ebp)
+L18:
+	cmpb	$0, 1(%ebx)
+	je	L19
+	cmpl	$36, -87928(%ebp)
+	jg	L19
+	pushl	$LC5
+	leal	-87708(%ebp), %eax
+	pushl	$6
+	pushl	$13
+	pushl	-87928(%ebp)
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+	incl	-87928(%ebp)
+	movb	$0, 1(%ebx)
+L19:
+	cmpb	$0, 2(%ebx)
+	je	L20
+	cmpl	$0, -87932(%ebp)
+	jne	L20
+	movl	-87928(%ebp), %eax
+	incl	%eax
+	movl	$15, -87932(%ebp)
+	movl	%eax, -87936(%ebp)
+	movl	$13, -87940(%ebp)
+L20:
+	cmpl	$0, -87956(%ebp)
+	je	L21
+	decl	-87956(%ebp)
+L22:
+	cmpl	$0, -87940(%ebp)
+	jle	L14
+	cmpl	$12, -87940(%ebp)
+	jg	L32
+	movl	-87936(%ebp), %ebx
+	cmpl	%ebx, -87944(%ebp)
+	jge	L33
+	movl	-87944(%ebp), %eax
+	addl	$25, %eax
+	cmpl	%eax, %ebx
+	jge	L33
+	movl	-87940(%ebp), %eax
+	cmpl	%eax, -87948(%ebp)
+	jg	L33
+	movl	-87948(%ebp), %eax
+	addl	-87964(%ebp), %eax
+	cmpl	%eax, -87940(%ebp)
+	jge	L33
+	movl	-87940(%ebp), %eax
+	subl	-87948(%ebp), %eax
+	sall	$5, %eax
+	leal	-87900(%eax,%ebp), %eax
+	pushl	%eax
+	pushl	$2
+	pushl	-87940(%ebp)
+	pushl	-87944(%ebp)
+L82:
+	leal	-87708(%ebp), %eax
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+L32:
+	decl	-87940(%ebp)
+	cmpl	$0, -87940(%ebp)
+	jle	L35
+	pushl	$LC8
+	leal	-87708(%ebp), %eax
+	pushl	$3
+	pushl	-87940(%ebp)
+	pushl	-87936(%ebp)
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+L36:
+	movl	-87936(%ebp), %ebx
+	cmpl	%ebx, -87944(%ebp)
+	jge	L14
+	movl	-87944(%ebp), %eax
+	addl	$25, %eax
+	cmpl	%eax, %ebx
+	jge	L14
+	movl	-87940(%ebp), %eax
+	cmpl	%eax, -87948(%ebp)
+	jg	L14
+	movl	-87948(%ebp), %eax
+	addl	-87964(%ebp), %eax
+	cmpl	%eax, -87940(%ebp)
+	jge	L14
+	movl	-87940(%ebp), %eax
+	subl	-87948(%ebp), %eax
+	sall	$5, %eax
+	leal	-87900(%eax,%ebp), %edx
+	movl	%ebx, %eax
+	subl	-87944(%ebp), %eax
+	leal	(%eax,%edx), %ebx
+	cmpb	$32, (%ebx)
+	je	L14
+	movl	-87976(%ebp), %eax
+	leal	-87916(%ebp), %esi
+	addl	%eax, -87968(%ebp)
+	incl	%eax
+	movl	%eax, -87976(%ebp)
+	pushl	-87968(%ebp)
+	pushl	%esi
+	call	_setdec8
+	leal	-87708(%ebp), %eax
+	pushl	%esi
+	pushl	$7
+	pushl	$0
+	pushl	$10
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	movl	-87968(%ebp), %eax
+	addl	$32, %esp
+	cmpl	%eax, -87972(%ebp)
+	jge	L40
+	pushl	%esi
+	movl	%eax, -87972(%ebp)
+	pushl	$7
+	leal	-87708(%ebp), %eax
+	pushl	$0
+	pushl	$27
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+L40:
+	decl	%ebx
+	cmpb	$32, (%ebx)
+	je	L74
+L45:
+	decl	%ebx
+	cmpb	$32, (%ebx)
+	jne	L45
+L74:
+	movl	$1, %esi
+L50:
+	movb	$32, (%esi,%ebx)
+	incl	%esi
+	cmpl	$4, %esi
+	jle	L50
+	movl	-87940(%ebp), %eax
+	subl	-87948(%ebp), %eax
+	sall	$5, %eax
+	leal	-87900(%eax,%ebp), %eax
+	pushl	%eax
+	leal	-87708(%ebp), %eax
+	pushl	$2
+	pushl	-87940(%ebp)
+	pushl	-87944(%ebp)
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+	cmpl	$0, -87964(%ebp)
+	jle	L78
+	movl	-87964(%ebp), %edx
+	sall	$5, %edx
+L62:
+	leal	-87900(%edx,%ebp), %eax
+	leal	-32(%eax), %ebx
+	cmpb	$0, -32(%eax)
+	je	L80
+L61:
+	cmpb	$32, (%ebx)
+	jne	L60
+	incl	%ebx
+	cmpb	$0, (%ebx)
+	jne	L61
+L80:
+	decl	-87964(%ebp)
+	subl	$32, %edx
+	cmpl	$0, -87964(%ebp)
+	jg	L62
+L78:
+	movl	-87952(%ebp), %eax
+	movl	$3, %edx
+	movl	%edx, %ebx
+	cltd
+	idivl	%ebx
+	subl	%eax, -87952(%ebp)
+	jmp	L3
+L60:
+	movl	$0, -87940(%ebp)
+	jmp	L14
+L35:
+	subl	$10, -87976(%ebp)
+	cmpl	$0, -87976(%ebp)
+	jg	L36
+	movl	$1, -87976(%ebp)
+	jmp	L36
+L33:
+	pushl	$LC7
+	pushl	$0
+	pushl	-87940(%ebp)
+	pushl	-87936(%ebp)
+	jmp	L82
+L21:
+	movl	-87952(%ebp), %eax
+	movl	%eax, -87956(%ebp)
+	movl	-87944(%ebp), %eax
+	addl	-87960(%ebp), %eax
+	cmpl	$14, %eax
+	jbe	L23
+	movl	-87948(%ebp), %eax
+	addl	-87964(%ebp), %eax
+	cmpl	$13, %eax
+	je	L15
+	pushl	$LC6
+	movl	-87944(%ebp), %eax
+	pushl	$0
+	incl	%eax
+	pushl	-87948(%ebp)
+	pushl	%eax
+	leal	-87708(%ebp), %eax
+	pushl	%eax
+	negl	-87960(%ebp)
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+	incl	-87948(%ebp)
+L25:
+	xorl	%esi, %esi
+	cmpl	-87964(%ebp), %esi
+	jge	L22
+	xorl	%ebx, %ebx
+L30:
+	leal	-87900(%ebx,%ebp), %eax
+	addl	$32, %ebx
+	pushl	%eax
+	movl	-87948(%ebp), %eax
+	pushl	$2
+	addl	%esi, %eax
+	pushl	%eax
+	incl	%esi
+	pushl	-87944(%ebp)
+	leal	-87708(%ebp), %eax
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+	cmpl	-87964(%ebp), %esi
+	jl	L30
+	jmp	L22
+L15:
+	pushl	$LC9
+	leal	-87708(%ebp), %eax
+	pushl	$1
+	movl	$1, %esi
+	pushl	$6
+	pushl	$15
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	pushl	%ebx
+	pushl	-87924(%ebp)
+	pushl	$0
+	call	_wait
+	addl	$36, %esp
+L67:
+	pushl	$LC10
+	leal	-87708(%ebp), %eax
+	pushl	$0
+	pushl	%esi
+	incl	%esi
+	pushl	$0
+	pushl	%eax
+	pushl	%edi
+	call	_putstr
+	addl	$24, %esp
+	cmpl	$13, %esi
+	jle	L67
+	jmp	L2
+L23:
+	movl	%eax, -87944(%ebp)
+	jmp	L25
+	.balign 2
+.globl _putstr
+	.def	_putstr;	.scl	2;	.type	32;	.endef
+_putstr:
+	pushl	%ebp
+	orl	$-1, %ecx
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	pushl	%ebx
+	subl	$12, %esp
+	movl	20(%ebp), %edx
+	movl	16(%ebp), %esi
+	sall	$4, %edx
+	movl	28(%ebp), %edi
+	leal	8(,%esi,8), %esi
+	leal	29(%edx), %eax
+	movl	%esi, -24(%ebp)
+	cld
+	movl	%eax, -20(%ebp)
+	addl	$44, %edx
+	xorl	%eax, %eax
+	repne
+	scasb
+	notl	%ecx
+	pushl	$0
+	movl	8(%ebp), %eax
+	pushl	%edx
+	leal	-9(%esi,%ecx,8), %ecx
+	pushl	%ecx
+	incl	%eax
+	pushl	-20(%ebp)
+	pushl	%esi
+	leal	-14(%ebp), %edi
+	pushl	%eax
+	call	_api_boxfilwin
+	addl	$24, %esp
+	movl	-20(%ebp), %eax
+	movl	12(%ebp), %ebx
+	imull	$336, %eax, %eax
+	movb	$0, -13(%ebp)
+	addl	%eax, %ebx
+L84:
+	movl	28(%ebp), %eax
+	movb	(%eax), %cl
+	movzbl	%cl, %edx
+	testl	%edx, %edx
+	je	L85
+	cmpl	$32, %edx
+	je	L88
+	leal	-97(%edx), %eax
+	cmpl	$7, %eax
+	ja	L89
+	sall	$4, %edx
+	addl	%esi, %ebx
+	addl	$_charset-1552, %edx
+	xorl	%ecx, %ecx
+L102:
+	cmpb	$0, (%ecx,%edx)
+	jns	L94
+	movb	24(%ebp), %al
+	movb	%al, (%ebx)
+L94:
+	movb	(%ecx,%edx), %al
+	andl	$64, %eax
+	testb	%al, %al
+	je	L95
+	movb	24(%ebp), %al
+	movb	%al, 1(%ebx)
+L95:
+	movb	(%ecx,%edx), %al
+	andl	$32, %eax
+	testb	%al, %al
+	je	L96
+	movb	24(%ebp), %al
+	movb	%al, 2(%ebx)
+L96:
+	movb	(%ecx,%edx), %al
+	andl	$16, %eax
+	testb	%al, %al
+	je	L97
+	movb	24(%ebp), %al
+	movb	%al, 3(%ebx)
+L97:
+	movb	(%ecx,%edx), %al
+	andl	$8, %eax
+	testb	%al, %al
+	je	L98
+	movb	24(%ebp), %al
+	movb	%al, 4(%ebx)
+L98:
+	movb	(%ecx,%edx), %al
+	andl	$4, %eax
+	testb	%al, %al
+	je	L99
+	movb	24(%ebp), %al
+	movb	%al, 5(%ebx)
+L99:
+	movb	(%ecx,%edx), %al
+	andl	$2, %eax
+	testb	%al, %al
+	je	L100
+	movb	24(%ebp), %al
+	movb	%al, 6(%ebx)
+L100:
+	movb	(%ecx,%edx), %al
+	andl	$1, %eax
+	testb	%al, %al
+	je	L101
+	movb	24(%ebp), %al
+	movb	%al, 7(%ebx)
+L101:
+	incl	%ecx
+	addl	$336, %ebx
+	cmpl	$15, %ecx
+	jle	L102
+	movl	%ebx, %eax
+	subl	%esi, %eax
+	leal	-5376(%eax), %ebx
+L88:
+	incl	28(%ebp)
+	addl	$8, %esi
+	jmp	L84
+L89:
+	pushl	%edi
+	movl	8(%ebp), %eax
+	pushl	$1
+	incl	%eax
+	pushl	24(%ebp)
+	pushl	-20(%ebp)
+	pushl	%esi
+	movb	%cl, -14(%ebp)
+	pushl	%eax
+	call	_api_putstrwin
+	addl	$24, %esp
+	jmp	L88
+L85:
+	movl	-20(%ebp), %eax
+	addl	$16, %eax
+	pushl	%eax
+	pushl	%esi
+	pushl	-20(%ebp)
+	pushl	-24(%ebp)
+	pushl	8(%ebp)
+	call	_api_refreshwin
+	leal	-12(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	ret
+	.balign 2
+.globl _wait
+	.def	_wait;	.scl	2;	.type	32;	.endef
+_wait:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%esi
+	pushl	%ebx
+	movl	8(%ebp), %ebx
+	movl	16(%ebp), %esi
+	testl	%ebx, %ebx
+	jle	L107
+	pushl	%ebx
+	movl	$128, %ebx
+	pushl	12(%ebp)
+	call	_api_settimer
+	popl	%ecx
+	popl	%eax
+L109:
+	pushl	$1
+	call	_api_getkey
+	popl	%edx
+	cmpl	%eax, %ebx
+	je	L106
+	cmpl	$52, %eax
+	je	L116
+L113:
+	cmpl	$54, %eax
+	je	L117
+L114:
+	cmpl	$32, %eax
+	jne	L109
+	movb	$1, 2(%esi)
+	jmp	L109
+L117:
+	movb	$1, 1(%esi)
+	jmp	L114
+L116:
+	movb	$1, (%esi)
+	jmp	L113
+L106:
+	leal	-8(%ebp), %esp
+	popl	%ebx
+	popl	%esi
+	popl	%ebp
+	ret
+L107:
+	movl	$10, %ebx
+	jmp	L109
+	.balign 2
+.globl _setdec8
+	.def	_setdec8;	.scl	2;	.type	32;	.endef
+_setdec8:
+	pushl	%ebp
+	movl	$7, %ecx
+	movl	%esp, %ebp
+	pushl	%edi
+	pushl	%esi
+	pushl	%ebx
+	movl	8(%ebp), %ebx
+L123:
+	movl	12(%ebp), %eax
+	movl	$10, %edx
+	movl	%edx, %edi
+	cltd
+	idivl	%edi
+	addl	$48, %edx
+	movb	%dl, (%ecx,%ebx)
+	decl	%ecx
+	movl	%eax, 12(%ebp)
+	jns	L123
+	movb	$0, 8(%ebx)
+	popl	%ebx
+	popl	%esi
+	popl	%edi
+	popl	%ebp
+	ret
+	.def	_api_getkey;	.scl	2;	.type	32;	.endef
+	.def	_api_settimer;	.scl	2;	.type	32;	.endef
+	.def	_api_refreshwin;	.scl	2;	.type	32;	.endef
+	.def	_api_putstrwin;	.scl	2;	.type	32;	.endef
+	.def	_setdec8;	.scl	2;	.type	32;	.endef
+	.def	_wait;	.scl	2;	.type	32;	.endef
+	.def	_putstr;	.scl	2;	.type	32;	.endef
+	.def	_api_inittimer;	.scl	2;	.type	32;	.endef
+	.def	_api_alloctimer;	.scl	2;	.type	32;	.endef
+	.def	_api_boxfilwin;	.scl	2;	.type	32;	.endef
+	.def	_api_openwin;	.scl	2;	.type	32;	.endef

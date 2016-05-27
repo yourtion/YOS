@@ -15,7 +15,7 @@ default :
 #文件生成规则
 
 haribote.img : kernel/ipl10.bin kernel/haribote.sys Makefile \
-		demos/a/a.hrb demos/hello3/hello3.hrb demos/hello4/hello4.hrb demos/hello5/hello5.hrb \
+		demos/a/a.hrb demos/hello3/hello3.hrb demos/hello4/hello4.hrb \
 		demos/winhelo/winhelo.hrb demos/winhelo2/winhelo2.hrb demos/winhelo3/winhelo3.hrb \
 		demos/star1/star1.hrb demos/stars/stars.hrb demos/stars2/stars2.hrb \
 		demos/lines/lines.hrb apps/walk/walk.hrb demos/noodle/noodle.hrb \
@@ -32,7 +32,6 @@ haribote.img : kernel/ipl10.bin kernel/haribote.sys Makefile \
 		copy from:demos/a/a.hrb to:@: \
 		copy from:demos/hello3/hello3.hrb to:@: \
 		copy from:demos/hello4/hello4.hrb to:@: \
-		copy from:demos/hello5/hello5.hrb to:@: \
 		copy from:demos/winhelo/winhelo.hrb to:@: \
 		copy from:demos/winhelo2/winhelo2.hrb to:@: \
 		copy from:demos/winhelo3/winhelo3.hrb to:@: \
@@ -86,7 +85,6 @@ full :
 	$(MAKE) -C demos/a
 	$(MAKE) -C demos/hello3
 	$(MAKE) -C demos/hello4
-	$(MAKE) -C demos/hello5
 	$(MAKE) -C demos/winhelo
 	$(MAKE) -C demos/winhelo2
 	$(MAKE) -C demos/winhelo3
@@ -141,7 +139,6 @@ clean_full :
 	$(MAKE) -C demos/a			clean
 	$(MAKE) -C demos/hello3		clean
 	$(MAKE) -C demos/hello4		clean
-	$(MAKE) -C demos/hello5		clean
 	$(MAKE) -C demos/winhelo		clean
 	$(MAKE) -C demos/winhelo2		clean
 	$(MAKE) -C demos/winhelo3		clean
@@ -175,7 +172,6 @@ src_only_full :
 	$(MAKE) -C demos/a			src_only
 	$(MAKE) -C demos/hello3		src_only
 	$(MAKE) -C demos/hello4		src_only
-	$(MAKE) -C demos/hello5		src_only
 	$(MAKE) -C demos/winhelo		src_only
 	$(MAKE) -C demos/winhelo2		src_only
 	$(MAKE) -C demos/winhelo3		src_only
