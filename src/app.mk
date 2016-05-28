@@ -10,9 +10,9 @@ default :
 
 #文件生成规则
 
-$(APP).bim : $(APP).obj $(APILIBPATH)apilib.lib $(STDLIBPATH)stdlib.lib Makefile $(APPMKFILE)
+$(APP).bim : $(APP).obj $(APILIBPATH)apilib.lib $(STDLIBPATH)stdlibs.lib Makefile $(APPMKFILE)
 	$(OBJ2BIM) @$(RULEFILE) out:$(APP).bim map:$(APP).map stack:$(STACK) \
-		$(APP).obj $(APILIBPATH)apilib.lib $(STDLIBPATH)stdlib.lib
+		$(APP).obj $(APILIBPATH)apilib.lib $(STDLIBPATH)stdlibs.lib
 
 #命令
 

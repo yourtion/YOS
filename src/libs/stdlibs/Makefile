@@ -3,17 +3,17 @@ RULEFILE = $(ROOTPATH)ruls/haribote_app.rul
 
 include $(ROOTPATH)tools.mk
 
-OBJS_API = stdlib.obj
+OBJS_API = stdlibs.obj
 
 #默认动作
 
 default :
-	$(MAKE) stdlib.lib
+	$(MAKE) stdlibs.lib
 
 #库生成规则
 
-stdlib.lib : Makefile $(OBJS_API)
-	$(GOLIB) $(OBJS_API) out:stdlib.lib
+stdlibs.lib : Makefile $(OBJS_API)
+	$(GOLIB) $(OBJS_API) out:stdlibs.lib
 
 #命令
 
@@ -23,4 +23,4 @@ clean :
 
 src_only :
 	$(MAKE) clean
-	-$(DEL) stdlib.lib
+	-$(DEL) stdlibs.lib
