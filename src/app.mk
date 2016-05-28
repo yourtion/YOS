@@ -30,7 +30,6 @@ clean :
 	-$(DEL) *.map
 	-$(DEL) *.bim
 	-$(DEL) *.org
-	-$(DEL) haribote.img
 
 src_only :
 	$(MAKE) clean

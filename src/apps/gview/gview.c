@@ -1,4 +1,4 @@
-#include "../apilib.h"
+#include "apilib.h"
 
 struct DLL_STRPICENV {	/* 64KB */
 	int work[64 * 1024 / 4];

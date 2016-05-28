@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../apilib.h"
+#include "apilib.h"
 
 #define MAX		1000
 

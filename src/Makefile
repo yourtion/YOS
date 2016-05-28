@@ -80,7 +80,7 @@ install :
 full :
 	$(MAKE) -C kernel
 	$(MAKE) -C libs/apilib
-	$(MAKE) -C libs/stdlib
+	$(MAKE) -C libs/stdlibs
 	$(MAKE) -C demos/a
 	$(MAKE) -C demos/hello3
 	$(MAKE) -C demos/hello4
@@ -133,7 +133,7 @@ src_only :
 clean_full :
 	$(MAKE) -C kernel		clean
 	$(MAKE) -C libs/apilib		clean
-	$(MAKE) -C libs/stdlib		clean
+	$(MAKE) -C libs/stdlibs		clean
 	$(MAKE) -C demos/a			clean
 	$(MAKE) -C demos/hello3		clean
 	$(MAKE) -C demos/hello4		clean
@@ -166,7 +166,7 @@ clean_full :
 src_only_full :
 	$(MAKE) -C kernel		src_only
 	$(MAKE) -C libs/apilib		src_only
-	$(MAKE) -C libs/stdlib		src_only
+	$(MAKE) -C libs/stdlibs		src_only
 	$(MAKE) -C demos/a			src_only
 	$(MAKE) -C demos/hello3		src_only
 	$(MAKE) -C demos/hello4		src_only

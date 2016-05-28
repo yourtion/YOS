@@ -1,0 +1,94 @@
+	.file	"stdlib.c"
+	.text
+	.balign 2
+.globl _putchar
+	.def	_putchar;	.scl	2;	.type	32;	.endef
+_putchar:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ebx
+	movl	8(%ebp), %ebx
+	pushl	%ebx
+	call	_api_putchar
+	movl	%ebx, %eax
+	movl	-4(%ebp), %ebx
+	leave
+	ret
+	.balign 2
+.globl _exit
+	.def	_exit;	.scl	2;	.type	32;	.endef
+_exit:
+	pushl	%ebp
+	movl	%esp, %ebp
+	popl	%ebp
+	jmp	_api_end
+	.balign 2
+.globl _printf
+	.def	_printf;	.scl	2;	.type	32;	.endef
+_printf:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%esi
+	pushl	%ebx
+	subl	$1008, %esp
+	leal	12(%ebp), %eax
+	leal	-1016(%ebp), %ebx
+	pushl	%eax
+	pushl	8(%ebp)
+	pushl	%ebx
+	call	_vsprintf
+	pushl	%ebx
+	movl	%eax, %esi
+	call	_api_putstr0
+	leal	-8(%ebp), %esp
+	movl	%esi, %eax
+	popl	%ebx
+	popl	%esi
+	popl	%ebp
+	ret
+	.balign 2
+.globl _malloc
+	.def	_malloc;	.scl	2;	.type	32;	.endef
+_malloc:
+	pushl	%ebp
+	movl	%esp, %ebp
+	pushl	%ebx
+	movl	8(%ebp), %ebx
+	leal	16(%ebx), %eax
+	pushl	%eax
+	call	_api_malloc
+	popl	%edx
+	testl	%eax, %eax
+	je	L5
+	movl	%ebx, (%eax)
+	addl	$16, %eax
+L5:
+	movl	-4(%ebp), %ebx
+	leave
+	ret
+	.balign 2
+.globl _free
+	.def	_free;	.scl	2;	.type	32;	.endef
+_free:
+	pushl	%ebp
+	movl	%esp, %ebp
+	movl	8(%ebp), %eax
+	testl	%eax, %eax
+	je	L6
+	leal	-16(%eax), %edx
+	movl	-16(%eax), %eax
+	addl	$16, %eax
+	pushl	%eax
+	pushl	%edx
+	call	_api_free
+	popl	%ecx
+	popl	%eax
+L6:
+	leave
+	ret
+	.def	_api_free;	.scl	2;	.type	32;	.endef
+	.def	_api_malloc;	.scl	2;	.type	32;	.endef
+	.def	_api_putstr0;	.scl	2;	.type	32;	.endef
+	.def	_vsprintf;	.scl	2;	.type	32;	.endef
+	.def	_api_end;	.scl	2;	.type	32;	.endef
+	.def	_api_putchar;	.scl	2;	.type	32;	.endef

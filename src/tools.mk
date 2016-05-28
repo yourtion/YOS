@@ -2,7 +2,7 @@ UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
   MAKE     = make -r 
   NASK     = $(TOOLPATH)nask
-  CC1      = $(TOOLPATH)gocc1 -I$(INCPATH) -I../ -Os -Wall -quiet
+  CC1      = $(TOOLPATH)gocc1 -I$(INCPATH) -I$(ROOTPATH) -Os -Wall -quiet
   GAS2NASK = $(TOOLPATH)gas2nask -a
   OBJ2BIM  = $(TOOLPATH)obj2bim
   MAKEFONT = $(TOOLPATH)makefont
@@ -21,7 +21,7 @@ ifeq ($(UNAME), Darwin)
 else
   MAKE     = $(TOOLPATH)make.exe -r
   NASK     = $(TOOLPATH)nask.exe
-  CC1      = $(TOOLPATH)cc1.exe -I$(INCPATH) -Os -Wall -quiet
+  CC1      = $(TOOLPATH)cc1.exe -I$(INCPATH) -I$(ROOTPATH) -Os -Wall -quiet
   GAS2NASK = $(TOOLPATH)gas2nask.exe -a
   OBJ2BIM  = $(TOOLPATH)obj2bim.exe
   MAKEFONT = $(TOOLPATH)makefont.exe
@@ -39,7 +39,7 @@ endif
 
 LIBPATH   = $(ROOTPATH)libs/
 APILIBPATH = $(LIBPATH)apilib/
-STDLIBPATH = $(LIBPATH)stdlib/
+STDLIBPATH = $(LIBPATH)stdlibs/
 
 HARIBOTEPATH = $(ROOTPATH)kernel/
 TOOLSDIR = $(ROOTPATH)../
@@ -48,7 +48,7 @@ APPMKFILE = $(ROOTPATH)app.mk
 
 # 其他指令
 
-%.gas : %.c $(ROOTPATH)apilib.h $(ROOTPATH)stdlib.h Makefile
+%.gas : %.c $(ROOTPATH)apilib.h $(ROOTPATH)stdlibs.h Makefile
 	$(CC1) -o $*.gas $*.c
 
 %.nas : %.gas Makefile
