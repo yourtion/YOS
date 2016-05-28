@@ -17,7 +17,6 @@ ifeq ($(UNAME), Darwin)
   TOOLPATH = $(TOOLSDIR)tools/osx/
   INCPATH  = $(TOOLSDIR)tools/osx/haribote/
   COPYSYS  = cat asmhead.bin bootpack.hrb > haribote.sys
-  QRUN = qemu-system-i386 -fda haribote.img
 else
   MAKE     = $(TOOLPATH)make.exe -r
   NASK     = $(TOOLPATH)nask.exe
@@ -27,6 +26,7 @@ else
   MAKEFONT = $(TOOLPATH)makefont.exe
   BIN2OBJ  = $(TOOLPATH)bin2obj.exe
   BIM2HRB  = $(TOOLPATH)bim2hrb.exe
+  BIM2BIN  = $(TOOLPATH)bim2bin.exe
   EDIMG    = $(TOOLPATH)edimg.exe
   IMGTOL   = $(TOOLPATH)imgtol.com
   GOLIB    = $(TOOLPATH)golib00.exe 

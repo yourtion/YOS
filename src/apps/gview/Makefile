@@ -3,7 +3,6 @@ STACK    = 4480k
 MALLOC   = 0k
 
 ROOTPATH = ../../
-
 RULEFILE = $(ROOTPATH)ruls/haribote_app.rul
 include $(ROOTPATH)tools.mk
 
@@ -34,4 +33,3 @@ clean :
 
 src_only :
 	$(MAKE) clean
-	-$(DEL) $(APP).hrb
