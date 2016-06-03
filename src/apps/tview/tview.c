@@ -250,6 +250,32 @@ char *lineview(int win, int w, int y, int xskip, unsigned char *p, int tab, int 
 				p++;
 			}
 		}
+		if (lang == 3) {	/* EUC */
+			if (*p == 0x09) {
+				x = puttab(x, w, xskip, s, tab);
+				p++;
+			} else if (0xa1 <= *p && *p <= 0xfe) {
+				/*全角字符*/
+				if (x == -1) {
+					s[0] = ' ';
+				}
+				if (0 <= x && x < w - 1) {
+					s[x]     = *p;
+					s[x + 1] = p[1];
+				}
+				if (x == w - 1) {
+					s[x] = ' ';
+				} 
+				x += 2;
+				p += 2;
+			} else {
+				if (0 <= x && x < w) {
+					s[x] = *p;
+				}
+				x++;
+				p++;
+			}
+		}
 	}
 	if (x > w) {
 		x = w;

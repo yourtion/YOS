@@ -109,16 +109,16 @@ void HariMain(void)
 	fat = (int *) memman_alloc_4k(memman, 4 * 2880);
 	file_readfat(fat, (unsigned char *) (ADR_DISKIMG + 0x000200));
 
-	finfo = file_search("nihongo.fnt", (struct FILEINFO *) (ADR_DISKIMG + 0x002600), 224);
+	finfo = file_search("chinese.fnt", (struct FILEINFO *) (ADR_DISKIMG + 0x002600), 224);
 	if (finfo != 0) {
 		i = finfo->size;
 		nihongo = file_loadfile2(finfo->clustno, &i, fat);
 	} else {
-		nihongo = (unsigned char *) memman_alloc_4k(memman, 16 * 256 + 32 * 94 * 47);
+		nihongo = (unsigned char *) memman_alloc_4k(memman, 16 * 256 + 32 * 94 * 94);
 		for (i = 0; i < 16 * 256; i++) {
 			nihongo[i] = hankaku[i]; /*没有字库，半角部分直接复制英文字库*/
 		}
-		for (i = 16 * 256; i < 16 * 256 + 32 * 94 * 47; i++) {
+		for (i = 16 * 256; i < 16 * 256 + 32 * 94 * 94; i++) {
 			nihongo[i] = 0xff; /* 没有字库，全角部分以0xff填充 */
 		}
 	}

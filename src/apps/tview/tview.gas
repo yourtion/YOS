@@ -477,11 +477,11 @@ L133:
 	testb	%al, %al
 	je	L134
 	cmpb	$10, %al
-	je	L163
+	je	L172
 	cmpl	$0, 32(%ebp)
 	jne	L138
 	cmpb	$9, %al
-	je	L164
+	je	L173
 	testl	%edx, %edx
 	js	L141
 	cmpl	%esi, %edx
@@ -493,28 +493,75 @@ L140:
 	incl	%ebx
 L138:
 	cmpl	$1, 32(%ebp)
-	je	L165
+	je	L174
 L142:
 	cmpl	$2, 32(%ebp)
+	je	L175
+L152:
+	cmpl	$3, 32(%ebp)
 	jne	L133
 	movb	(%ebx), %cl
 	cmpb	$9, %cl
-	je	L166
+	je	L176
 	leal	95(%ecx), %eax
 	cmpb	$93, %al
-	jbe	L167
+	jbe	L177
 	testl	%edx, %edx
-	js	L160
+	js	L169
 	cmpl	%esi, %edx
-	jge	L160
+	jge	L169
 	movb	%cl, -156(%ebp,%edx)
-L160:
+L169:
 	incl	%edx
 	incl	%ebx
 	jmp	L133
-L167:
+L177:
 	cmpl	$-1, %edx
-	je	L168
+	je	L178
+L165:
+	testl	%edx, %edx
+	js	L166
+	leal	-1(%esi), %eax
+	cmpl	%eax, %edx
+	jge	L166
+	movb	%cl, -156(%ebp,%edx)
+	movb	1(%ebx), %al
+	movb	%al, -155(%ebp,%edx)
+L166:
+	leal	-1(%esi), %eax
+	cmpl	%eax, %edx
+	je	L179
+L167:
+	addl	$2, %edx
+	addl	$2, %ebx
+	jmp	L133
+L179:
+	movb	$32, -156(%ebp,%edx)
+	jmp	L167
+L178:
+	movb	$32, -156(%ebp)
+	jmp	L165
+L176:
+	pushl	28(%ebp)
+	leal	-156(%ebp), %eax
+	incl	%ebx
+	pushl	%eax
+	pushl	%edi
+	pushl	%esi
+	pushl	%edx
+	call	_puttab
+	addl	$20, %esp
+	movl	%eax, %edx
+	jmp	L133
+L175:
+	movb	(%ebx), %cl
+	cmpb	$9, %cl
+	je	L180
+	leal	95(%ecx), %eax
+	cmpb	$93, %al
+	ja	L155
+	cmpl	$-1, %edx
+	je	L181
 L156:
 	testl	%edx, %edx
 	js	L157
@@ -527,18 +574,28 @@ L156:
 L157:
 	leal	-1(%esi), %eax
 	cmpl	%eax, %edx
-	je	L169
+	je	L182
 L158:
 	addl	$2, %edx
 	addl	$2, %ebx
-	jmp	L133
-L169:
+	jmp	L152
+L182:
 	movb	$32, -156(%ebp,%edx)
 	jmp	L158
-L168:
+L181:
 	movb	$32, -156(%ebp)
 	jmp	L156
-L166:
+L155:
+	testl	%edx, %edx
+	js	L160
+	cmpl	%esi, %edx
+	jge	L160
+	movb	%cl, -156(%ebp,%edx)
+L160:
+	incl	%edx
+	incl	%ebx
+	jmp	L152
+L180:
 	pushl	28(%ebp)
 	leal	-156(%ebp), %eax
 	incl	%ebx
@@ -549,11 +606,11 @@ L166:
 	call	_puttab
 	addl	$20, %esp
 	movl	%eax, %edx
-	jmp	L133
-L165:
+	jmp	L152
+L174:
 	movb	(%ebx), %cl
 	cmpb	$9, %cl
-	je	L170
+	je	L183
 	leal	127(%ecx), %eax
 	cmpb	$30, %al
 	jbe	L146
@@ -562,7 +619,7 @@ L165:
 	ja	L145
 L146:
 	cmpl	$-1, %edx
-	je	L171
+	je	L184
 L147:
 	testl	%edx, %edx
 	js	L148
@@ -575,15 +632,15 @@ L147:
 L148:
 	leal	-1(%esi), %eax
 	cmpl	%eax, %edx
-	je	L172
+	je	L185
 L149:
 	addl	$2, %edx
 	addl	$2, %ebx
 	jmp	L142
-L172:
+L185:
 	movb	$32, -156(%ebp,%edx)
 	jmp	L149
-L171:
+L184:
 	movb	$32, -156(%ebp)
 	jmp	L147
 L145:
@@ -596,7 +653,7 @@ L151:
 	incl	%edx
 	incl	%ebx
 	jmp	L142
-L170:
+L183:
 	pushl	28(%ebp)
 	leal	-156(%ebp), %eax
 	incl	%ebx
@@ -608,7 +665,7 @@ L170:
 	addl	$20, %esp
 	movl	%eax, %edx
 	jmp	L142
-L164:
+L173:
 	pushl	28(%ebp)
 	leal	-156(%ebp), %eax
 	pushl	%eax
@@ -619,15 +676,15 @@ L164:
 	addl	$20, %esp
 	movl	%eax, %edx
 	jmp	L140
-L163:
+L172:
 	incl	%ebx
 L134:
 	cmpl	%esi, %edx
-	jle	L161
+	jle	L170
 	movl	%esi, %edx
-L161:
+L170:
 	testl	%edx, %edx
-	jle	L162
+	jle	L171
 	leal	-156(%ebp), %eax
 	pushl	%eax
 	movl	8(%ebp), %eax
@@ -640,7 +697,7 @@ L161:
 	movb	$0, -156(%ebp,%edx)
 	call	_api_putstrwin
 	addl	$24, %esp
-L162:
+L171:
 	leal	-12(%ebp), %esp
 	movl	%ebx, %eax
 	popl	%ebx
@@ -661,19 +718,19 @@ _puttab:
 	movl	16(%ebp), %edi
 	movl	20(%ebp), %esi
 	movl	24(%ebp), %ebx
-L174:
+L187:
 	testl	%ecx, %ecx
-	js	L177
+	js	L190
 	cmpl	12(%ebp), %ecx
-	jge	L177
+	jge	L190
 	movb	$32, (%ecx,%esi)
-L177:
+L190:
 	incl	%ecx
 	leal	(%edi,%ecx), %eax
 	cltd
 	idivl	%ebx
 	testl	%edx, %edx
-	jne	L174
+	jne	L187
 	popl	%ebx
 	movl	%ecx, %eax
 	popl	%esi

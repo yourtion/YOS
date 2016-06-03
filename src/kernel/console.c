@@ -33,7 +33,7 @@ void console_task(struct SHEET *sheet, int memtotal)
 	task->fhandle = fhandle;
 	task->fat = fat;
 	if (nihongo[4096] != 0xff) {	 /* 是否载入了字库？*/
-		task->langmode = 1;
+		task->langmode = 3;
 	} else {
 		task->langmode = 0;
 	}
@@ -333,7 +333,7 @@ void cmd_langmode(struct CONSOLE *cons, char *cmdline)
 {
 	struct TASK *task = task_now();
 	unsigned char mode = cmdline[9] - '0';
-	if (mode <= 2) {
+	if (mode <= 3) {
 		task->langmode = mode;
 	} else {
 		cons_putstr0(cons, "mode number error.\n");

@@ -56,10 +56,11 @@ haribote.img : kernel/ipl10.bin kernel/haribote.sys Makefile \
 		copy from:media/fujisan.mml to:@: \
 		copy from:media/daigo.mml to:@: \
 		copy from:media/daiku.mml to:@: \
+		copy from:media/cn.txt to:@: \
 		copy from:apps/gview/gview.hrb to:@: \
 		copy from:media/fujisan.jpg to:@: \
 		copy from:media/night.bmp to:@: \
-		copy from:font/nihongo.fnt to:@: \
+		copy from:font/chinese.fnt to:@: \
 		imgout:haribote.img
 
 #命令
