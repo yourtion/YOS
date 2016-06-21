@@ -1,0 +1,5 @@
+language: c
+osx_image: xcode7.3
+
+script:
+  - cd src && make full
