@@ -2,6 +2,8 @@ language: c
 matrix:
   include:
     - os: linux
+      sudo: required
+      dist: trusty
     - os: osx
       osx_image: xcode7.3
 

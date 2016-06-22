@@ -231,7 +231,7 @@ static int tek_decode2(int siz, UCHAR *p, UCHAR *q)
 		if (dsiz > bsiz || (hed & 0x21) != 0x01)
 			return 1;
 		if (hed & 0x40)
-			tek_getnum_s7s(&p); /* �I�v�V�������ւ̃|�C���^��ǂݔ�΂� */
+			tek_getnum_s7s(&p); 
 		st = tek_lzrestore_stk2(p1 - p, p, dsiz, q);
 	}
 	return st;

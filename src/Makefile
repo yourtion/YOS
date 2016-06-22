@@ -132,34 +132,34 @@ src_only :
 	-$(DEL) haribote.img
 
 clean_full :
-	$(MAKE) -C kernel		clean
+	$(MAKE) -C kernel			clean
 	$(MAKE) -C libs/apilib		clean
 	$(MAKE) -C libs/stdlibs		clean
 	$(MAKE) -C demos/a			clean
 	$(MAKE) -C demos/hello3		clean
 	$(MAKE) -C demos/hello4		clean
-	$(MAKE) -C demos/winhelo		clean
-	$(MAKE) -C demos/winhelo2		clean
-	$(MAKE) -C demos/winhelo3		clean
+	$(MAKE) -C demos/winhelo	clean
+	$(MAKE) -C demos/winhelo2	clean
+	$(MAKE) -C demos/winhelo3	clean
 	$(MAKE) -C demos/star1		clean
 	$(MAKE) -C demos/stars		clean
 	$(MAKE) -C demos/stars2		clean
 	$(MAKE) -C demos/lines		clean
-	$(MAKE) -C demos/walk			clean
+	$(MAKE) -C demos/walk		clean
 	$(MAKE) -C demos/noodle		clean
-	$(MAKE) -C demos/beepdown		clean
+	$(MAKE) -C demos/beepdown	clean
 	$(MAKE) -C demos/color		clean
 	$(MAKE) -C demos/color2		clean
-	$(MAKE) -C demos/sosu			clean
+	$(MAKE) -C demos/sosu		clean
 	$(MAKE) -C demos/sosu2		clean
 	$(MAKE) -C demos/sosu3		clean
-	$(MAKE) -C apps/type			clean
+	$(MAKE) -C apps/type		clean
 	$(MAKE) -C apps/iroha		clean
-	$(MAKE) -C demos/chklang		clean
+	$(MAKE) -C demos/chklang	clean
 	$(MAKE) -C demos/notrec		clean
 	$(MAKE) -C demos/bball		clean
 	$(MAKE) -C apps/invader		clean
-	$(MAKE) -C apps/calc			clean
+	$(MAKE) -C apps/calc		clean
 	$(MAKE) -C apps/tview		clean
 	$(MAKE) -C apps/mmlplay		clean
 	$(MAKE) -C apps/gview		clean
@@ -171,28 +171,28 @@ src_only_full :
 	$(MAKE) -C demos/a			src_only
 	$(MAKE) -C demos/hello3		src_only
 	$(MAKE) -C demos/hello4		src_only
-	$(MAKE) -C demos/winhelo		src_only
-	$(MAKE) -C demos/winhelo2		src_only
-	$(MAKE) -C demos/winhelo3		src_only
+	$(MAKE) -C demos/winhelo	src_only
+	$(MAKE) -C demos/winhelo2	src_only
+	$(MAKE) -C demos/winhelo3	src_only
 	$(MAKE) -C demos/star1		src_only
 	$(MAKE) -C demos/stars		src_only
 	$(MAKE) -C demos/stars2		src_only
 	$(MAKE) -C demos/lines		src_only
-	$(MAKE) -C demos/walk			src_only
+	$(MAKE) -C demos/walk		src_only
 	$(MAKE) -C demos/noodle		src_only
-	$(MAKE) -C demos/beepdown		src_only
+	$(MAKE) -C demos/beepdown	src_only
 	$(MAKE) -C demos/color		src_only
 	$(MAKE) -C demos/color2		src_only
-	$(MAKE) -C demos/sosu			src_only
+	$(MAKE) -C demos/sosu		src_only
 	$(MAKE) -C demos/sosu2		src_only
 	$(MAKE) -C demos/sosu3		src_only
-	$(MAKE) -C apps/type			src_only
+	$(MAKE) -C apps/type		src_only
 	$(MAKE) -C apps/iroha		src_only
-	$(MAKE) -C demos/chklang		src_only
+	$(MAKE) -C demos/chklang	src_only
 	$(MAKE) -C demos/notrec		src_only
 	$(MAKE) -C demos/bball		src_only
 	$(MAKE) -C apps/invader		src_only
-	$(MAKE) -C apps/calc			src_only
+	$(MAKE) -C apps/calc		src_only
 	$(MAKE) -C apps/tview		src_only
 	$(MAKE) -C apps/mmlplay		src_only
 	$(MAKE) -C apps/gview		src_only
