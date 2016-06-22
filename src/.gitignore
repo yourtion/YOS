@@ -13,3 +13,5 @@ hankaku.bin
 ipl10.bin
 
 !bmp.obj
+!golibc.lib
+!harilibc.lib

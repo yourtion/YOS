@@ -8,8 +8,8 @@ file:
 		.ojbファイル、.libファイルを記載 */
 	/* なお、このセクションはフルパスで書いてもよい。 */
 	/* 例：  c:/osask/gg00libc.lib;  */
-	/usr/share/haribote/harilibc.lib;
-	/usr/share/haribote/golibc.lib;
+	harilibc.lib;
+	golibc.lib;
 
 label:
 	/* 必ずリンクしなければいけないラベルを指定 */
