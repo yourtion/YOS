@@ -8,6 +8,6 @@ matrix:
       osx_image: xcode7.3
 
 script:
-  - cd src 
+  - chmod +x tools/linux/* && chmod +x tools/osx/* && cd src 
   - make full
   - ls -al haribote.img
