@@ -3,8 +3,8 @@ format:
 	data(align:4, logic:stack_end, file:code_end);
 
 file:
-	../../../tools/windows/haribote/harilibc.lib;
-	../../../tools/windows/haribote/golibc.lib;
+	../../includes/harilibc.lib;
+	../../includes/golibc.lib;
 
 label:
 	_HariStartup;
