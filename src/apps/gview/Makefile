@@ -13,7 +13,7 @@ default :
 
 #文件生成规则
 
-$(APP).bim : $(APP).obj bmp.obj jpeg.obj $(APILIBPATH)apilib.lib Makefile
+$(APP).bim : $(APP).obj bmp.obj jpeg.obj $(APILIBPATH)apilib.lib Makefile 
 	$(OBJ2BIM) @$(RULEFILE) out:$(APP).bim map:$(APP).map stack:$(STACK) \
 		$(APP).obj jpeg.obj bmp.obj $(APILIBPATH)apilib.lib
 
