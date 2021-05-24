@@ -4,6 +4,15 @@
 
 YourtionOS 基于 (OSASK) [30dayMakeOS](https://github.com/yourtion/30dayMakeOS) 构建你自己的操作系统。
 
+## 构建与运行
+
+```shell
+$ cd src
+$ make full
+```
+
+运行： `qemu-system-i386 -fda haribote.img`
+
 ## 开发计划（功能）
 
 - [X] 支持 Mac 开发环境
