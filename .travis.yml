@@ -3,8 +3,9 @@ os: osx
 osx_image: xcode7.3
 
 addons:
-  paths:
-    - src/haribote.img
+  artifacts:
+    paths:
+      - src/haribote.img
 
 script:
   - cd src 
